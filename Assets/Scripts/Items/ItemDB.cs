@@ -11,6 +11,8 @@ public static class ItemDB
 {
     private static bool initDB = false;
     private static Dictionary<string, Item> itemDB = new Dictionary<string, Item>();
+    private static Recipe[] recipes = new Recipe[1];
+    private static int currIndex = 0;
 
     // Add items to the Dictionary
     // @Parms PlayerManager playerMan : The PlayerManager to use
@@ -54,8 +56,18 @@ public static class ItemDB
             addItem("longTestNote", note2);
             Lore note3 = new Lore("Broken Note", "This note i broken into mutiple pages", new string[4]{"This is on page 1!", "This is on the second page!!", "This is on the third page!!!", "This is the final page of the book"});
             addItem("testMutiNote", note3);
+
+            // Testing the crafting system
+            Item paper = new Item("Paper", "Just some paper... what more do you want?");
+            addItem("paper", paper);
+            Item ink = new Item("Ink", "Ink to write with... and to drink");
+            addItem("ink", ink);
+            Lore noteBook = new Lore("Notebook", "This is a notebook", new string[8] {"Not this page", "Or this one", "Maybe the next one?", "No still not this one", "Your getting close", "So very close", "Here it comes", "HI!"});
+            addItem("notebook", noteBook);
+            // End Testing crafting
         }
         initDB = true;
+        initRecipes();
     }
 
     // Add the item the dictionary
@@ -76,5 +88,32 @@ public static class ItemDB
         Item temp = null;
         itemDB.TryGetValue(name, out temp);
         return temp;
+    }
+
+    // Initlizes the recipes for the game
+    private static void initRecipes() {
+        RecipeInput makeNoteBook = new RecipeInput(getItem("paper"), getItem("ink"), null, null);
+        Recipe noteBook = new Recipe(makeNoteBook, getItem("notebook"));
+        addRecipe(noteBook);
+    }
+
+    // Add a recipe to the database
+    // @Parms Recipe rec : The recipe to add
+    private static void addRecipe(Recipe rec) {
+        recipes[currIndex] = rec;
+        currIndex++;
+    }
+
+    // Gets an item from a recipe
+    // @Parms RecipeInput rec : The recipe to check
+    // @Return Item : Returns an item if the recipe is valid, null if otherwise
+    public static Item getItemFromRecipe(RecipeInput rec) {
+        foreach (Recipe recipe in recipes)
+        {
+            if (recipe.compareInput(rec)) {
+                return recipe.getItemOut();
+            }
+        }
+        return null;
     }
 }
