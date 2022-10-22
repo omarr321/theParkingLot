@@ -12,7 +12,7 @@ public class CraftingController : MonoBehaviour
     public GameObject personalCraftingTable;
     public TMPro.TMP_Dropdown mainItem;
     public TMPro.TMP_Dropdown secondItem;
-    public TMPro.TextMeshProUGUI CraftedItem;
+    public TMPro.TextMeshProUGUI craftedItem;
     public KeyCode openKey;
     public PlayerControlLock playerLock;
     public InvManager invMan;
@@ -22,9 +22,15 @@ public class CraftingController : MonoBehaviour
     private Color grey = new Color(0.6f, 0.6f, 0.6f, 1.0f);
     private Color white = new Color(1f, 1f, 1f, 1.0f);
     // Default values
+
+    private int mainItemIndex;
+    private int secondItemIndex;
     void Start()
     {
         personalCraftingTable.SetActive(false);
+        craftedItem.text = "";
+        mainItemIndex = -1;
+        secondItemIndex = -1;
         craftButt.enabled = false;
         craftButt.image.color = grey;
         secondItem.enabled = false;
@@ -61,6 +67,7 @@ public class CraftingController : MonoBehaviour
     // Updates the dropdown menu options
     private void updateDisplay()
     {
+        craftedItem.text = "";
         mainItem.ClearOptions();
         mainItem.AddOptions(new List<string> {"---"});
         int i = 0;
@@ -81,6 +88,7 @@ public class CraftingController : MonoBehaviour
     // Checks for when the main item is changed
     private void mainItemChanged(int arg0)
     {
+        craftedItem.text = "";
         secondItem.ClearOptions();
         secondItem.AddOptions(new List<string> {"---"});
         int i = 0;
@@ -97,18 +105,51 @@ public class CraftingController : MonoBehaviour
             secondItem.enabled = true;
             secondItem.image.color = white;
         }
+        mainItemIndex = mainItem.value-1;
         secondItemChanged(0);
     }
 
     // Checks for when the second item is changed
     private void secondItemChanged(int arg0)
     {
+        craftedItem.text = "";
         if (secondItem.value == 0) {
             craftButt.enabled = false;
             craftButt.image.color = grey;
         } else {
             craftButt.enabled = true;
             craftButt.image.color = white;
+        }
+
+        if (mainItem.value != 0) {
+            if (secondItem.value >= mainItem.value) {
+                secondItemIndex = secondItem.value;
+            } else {
+                secondItemIndex = secondItem.value-1;
+            }
+        }
+    }
+
+    // Will Check the crafting for recipe
+    public void craftItem() {
+        Item mainItem = invMan.getItem(mainItemIndex);
+        Item secondItem = invMan.getItem(secondItemIndex);
+        RecipeInput recIn = new RecipeInput(mainItem, secondItem, null, null);
+        Item item = ItemDB.getItemFromRecipe(recIn);
+
+        if (item == null) {
+            craftedItem.text = "You did not craft anything!";
+        } else {
+            if (mainItemIndex > secondItemIndex) {
+                invMan.removeItem(mainItemIndex);
+                invMan.removeItem(secondItemIndex);
+            } else {
+                invMan.removeItem(secondItemIndex);
+                invMan.removeItem(mainItemIndex);
+            }
+            invMan.addItem(item);
+            updateDisplay();
+            craftedItem.text = "You crafted: " + item.getName();
         }
     }
 }

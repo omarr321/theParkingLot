@@ -5,4 +5,4 @@ This game is an infinite parking lot at night. Scavange and craft to survive. Di
 ```2021.3.9f1```
 ## Credits
 - Omar Radwan, Creator and Lead Programmer
-- Wyatt Philip, Programmer
+- Wyatt Philips, Programmer
