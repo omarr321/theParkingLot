@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 /* This class is the Item DB and Receipes (Not Yet Inplemented)
  * @Author Omar Radwan
@@ -11,7 +12,7 @@ public static class ItemDB
 {
     private static bool initDB = false;
     private static Dictionary<string, Item> itemDB = new Dictionary<string, Item>();
-    private static Recipe[] recipes = new Recipe[1];
+    private static Recipe[] recipes = new Recipe[20000];
     private static int currIndex = 0;
 
     // Add items to the Dictionary
@@ -92,9 +93,17 @@ public static class ItemDB
 
     // Initlizes the recipes for the game
     private static void initRecipes() {
+        RecipeInput testStress = new RecipeInput(getItem("cerealBar"), getItem("cerealBar"), null, null);
+        Recipe recStress = new Recipe(testStress, getItem("paper"));
+        for(int i = 1; i < 20000; i++) {
+            addRecipe(recStress);
+        }
+
         RecipeInput makeNoteBook = new RecipeInput(getItem("paper"), getItem("ink"), null, null);
         Recipe noteBook = new Recipe(makeNoteBook, getItem("notebook"));
         addRecipe(noteBook);
+
+        Array.Sort(recipes);
     }
 
     // Add a recipe to the database
@@ -108,10 +117,9 @@ public static class ItemDB
     // @Parms RecipeInput rec : The recipe to check
     // @Return Item : Returns an item if the recipe is valid, null if otherwise
     public static Item getItemFromRecipe(RecipeInput rec) {
-        foreach (Recipe recipe in recipes)
-        {
-            if (recipe.compareInput(rec)) {
-                return recipe.getItemOut();
+        foreach (Recipe item in recipes) {
+            if (item.GetRecipeInput().CompareTo(rec) == 0) {
+                return item.getItemOut();
             }
         }
         return null;

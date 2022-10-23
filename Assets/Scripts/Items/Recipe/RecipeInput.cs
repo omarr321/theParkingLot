@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 /* This class is a recipe input
  * @Author Omar Radwan
  * @Version 1.0.0
  * @Throws System.Exception
  */
-public class RecipeInput
+public class RecipeInput : IComparable<RecipeInput>
 {
     private Item mainItem;
     private Item secondItem;
@@ -59,22 +60,45 @@ public class RecipeInput
         return this.hardware;
     }
 
-    // Checks to see if two recipe inputs are equal
-    // @Parms RecipeInput obj : The Recipe input to compare to
-    // @Return bool : True if they are equal, false if otherwise
-    public bool checkEqual(RecipeInput obj) {
-        if (this.getMain() != obj.getMain()) {
-            return false;
+    // Compares RecipeInput together for sorting
+    // @Parms RecipeInput obj : The RecipeInput
+    // @Return int : Returns less than 0 if the recipe comes before this recipe, greated than 0 if it comes after, 0 if equal
+    public int CompareTo(RecipeInput obj)
+    {
+        if (this.getBinding() == null || obj.getBinding() == null || this.getHareware() == null || obj.getHareware() == null) {
+            if (this.getMain().CompareTo(obj.getMain()) != 0) {
+                return this.getMain().CompareTo(obj.getMain());
+            } else if (this.getSecond().CompareTo(obj.getSecond()) != 0) {
+                return this.getSecond().CompareTo(obj.getSecond());
+            }
+
+            if (!(this.getBinding() == null && obj.getBinding() == null)) {
+                if (this.getBinding() == null) {
+                    return 1;
+                } else {
+                    return -1;
+                }
+            } else if (!(this.getHareware() == null && obj.getHareware() == null)) {
+                if (this.getHareware() == null) {
+                    return 1;
+                } else {
+                    return -1;
+                }
+            } else {
+                return 0;
+            }
+        } else {
+            if (this.getMain().CompareTo(obj.getMain()) != 0) {
+                return this.getMain().CompareTo(obj.getMain());
+            } else if (this.getSecond().CompareTo(obj.getSecond()) != 0) {
+                return this.getSecond().CompareTo(obj.getSecond());
+            } else if (this.getBinding().CompareTo(obj.getBinding()) != 0) {
+                return (this.getBinding().CompareTo(obj.getBinding()));
+            } else if (this.getHareware().CompareTo(obj.getHareware()) != 0) {
+                return this.getHareware().CompareTo(obj.getHareware());
+            } else {
+                return 0;
+            }
         }
-        if (this.getSecond() != obj.getSecond()) {
-            return false;
-        }
-        if (this.getBinding() != obj.getBinding()) {
-            return false;
-        }
-        if (this.getHareware() != obj.getHareware()) {
-            return false;
-        }
-        return true;
     }
 }
