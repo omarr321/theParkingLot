@@ -156,7 +156,7 @@ public class SettingManager : MonoBehaviour
     private const KeyCode defaultCraftingOpen = KeyCode.C;
     private const KeyCode defaultInteractKey = KeyCode.E;
     private const bool defaultInvertY = false;
-    private const int defaultCamSense = 25;
+    private const int defaultCamSense = 250;
 
     // User Set Values
     private KeyCode forward;
@@ -410,4 +410,11 @@ public class SettingManager : MonoBehaviour
         writer.Close();
     }
     #endregion
+
+    public KeyCode getKeycode(char key)
+    {
+        KeyCode temp = KeyCode.None;
+        chartoKeycode.TryGetValue(key, out temp);
+        return temp;
+    }
 }

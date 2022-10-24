@@ -42,6 +42,7 @@ public class MenuViewController : MonoBehaviour
     public void toggleSetting()
     {
         settingView.SetActive(!settingView.activeInHierarchy);
+        this.gameObject.SetActive(false);
     }
 
     public void clickedPlay()
