@@ -14,7 +14,7 @@ public class Lore : Item
     // @Parms string Name : The name of the item
     // @Parms string Desc : The desc of the item
     // @Parms string Lore : The Lore of the item, it can be opened into a window
-    public Lore(string Name, string Desc, string Lore) : base(Name, Desc)
+    public Lore(string saveName, string Name, string Desc, string Lore) : base(saveName, Name, Desc)
     {
         this.lore = Lore;
     }
@@ -23,7 +23,7 @@ public class Lore : Item
     // @Parms string Name : The name of the item
     // @Parms string Desc : The desc of the item
     // @Parms string Lore : The Lore of the item seprated into pages, it can be opened into a window
-    public Lore(string Name, string Desc, string[] Lore) : base(Name, Desc)
+    public Lore(string saveName, string Name, string Desc, string[] Lore) : base(saveName, Name, Desc)
     {
         for (int i = 0; i < Lore.Length; i++) {
             if (i == Lore.Length-1) {

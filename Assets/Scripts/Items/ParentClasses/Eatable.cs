@@ -20,7 +20,7 @@ public class Eatable : Item
     // @Parms float saturation : The saturation reg of the item
     // @Parms float hydration : The hydration reg of the item
     // @Parms float healthReg: The health reg of the item
-    public Eatable(string Name, string Desc, PlayerManager playerMan, float saturation, float hydration, float healthReg) : base(Name, Desc){
+    public Eatable(string saveName, string Name, string Desc, PlayerManager playerMan, float saturation, float hydration, float healthReg) : base(saveName, Name, Desc){
         this.saturation = saturation;
         this.hydration = hydration;
         this.healthReg = healthReg;

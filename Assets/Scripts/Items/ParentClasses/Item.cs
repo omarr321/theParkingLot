@@ -11,6 +11,7 @@ public class Item : IComparable<Item>
 {
     private int ID;
     private string Name;
+    private string saveName;
     private string Desc;
     private static int currID = 0;
     //public playerInvManager playerInv;
@@ -18,17 +19,24 @@ public class Item : IComparable<Item>
     // Constructor
     // @Parms string Name : The name of the item
     // @Parms string Desc : The desc of the item
-    public Item(string Name, string Desc){
+    public Item(string saveName, string Name, string Desc){
             this.ID = currID;
             currID++;
             this.Name = Name;
             this.Desc = Desc;
+            this.saveName = saveName;
     }
 
     // Gets name of item
     // @Return String: the name of the item
     public string getName() {
         return this.Name;
+    }
+
+    // Gets the name it is under in the db system
+    // @Return String: the save name of the item
+    public string getSaveName() {
+        return this.saveName;
     }
 
     // Gets desc of item
