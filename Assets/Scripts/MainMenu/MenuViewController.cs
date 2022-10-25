@@ -34,11 +34,14 @@ public class MenuViewController : MonoBehaviour
         settingView.SetActive(false);
     }
 
+    // Opens the credit tab
     public void toggleCredit()
     {
         creditView.SetActive(!creditView.activeInHierarchy);
     }
 
+    // Opens the Setting tab
+    // NOTE: It hides the main menu
     public void toggleSetting()
     {
         settingView.SetActive(!settingView.activeInHierarchy);
@@ -47,11 +50,11 @@ public class MenuViewController : MonoBehaviour
 
     public void clickedPlay()
     {
-        //SceneManager.LoadScene(1);
+        //TODO: Pick a world name and get it loaded into the file system
     }
 
     public void clickedLoad()
     {
-
+        //TODO: Pick a world to load and get it loaded into the file system
     }
 }

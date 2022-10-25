@@ -324,6 +324,10 @@ public class SettingManager : MonoBehaviour
     public void defaultSetUp() {
             FileStream playerPref = File.Create(Path.Combine(Application.persistentDataPath, "playerPref.dat"));
             playerPref.Close();
+            restoreDefaultVal();
+    }
+
+    public void restoreDefaultVal(){
             Dictionary<string, object> saveData = new Dictionary<string, object>();
             saveData.Add("forward", this.getDefaultForward().ToString().ToLower());
             saveData.Add("backward", this.getDefaultBackward().ToString().ToLower());
@@ -340,6 +344,7 @@ public class SettingManager : MonoBehaviour
                 writer.WriteLine(data.Key + ":" + data.Value.ToString());
             }
             writer.Close();
+            loadPlayerSetting();
     }
 
     public void loadPlayerSetting() {
