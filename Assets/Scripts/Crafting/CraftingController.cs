@@ -25,8 +25,11 @@ public class CraftingController : MonoBehaviour
 
     private int mainItemIndex;
     private int secondItemIndex;
+    private SettingManager settingMan;
     void Start()
     {
+        settingMan = GameObject.Find("SettingPersonal").GetComponent<SettingManager>();
+        openKey = settingMan.getCrafting();
         personalCraftingTable.SetActive(false);
         craftedItem.text = "";
         mainItemIndex = -1;

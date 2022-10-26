@@ -18,6 +18,8 @@ public class WorldManager : MonoBehaviour
     private Dictionary<string, object> playerVal = new Dictionary<string, object>();
     private Dictionary<string, Item> playerInv = new Dictionary<string, Item>();
 
+    private int invIndex;
+
     private bool init = false;
 
     // Set this gameObject to not be destory on scene load
@@ -25,6 +27,11 @@ public class WorldManager : MonoBehaviour
     {
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+
+    void Start()
+    {
+        ItemDB.initDatabase(this.GetComponent<PlayerManager>());
     }
 
     public void setSeed(int seed)
@@ -78,7 +85,7 @@ public class WorldManager : MonoBehaviour
                 case "playerRotX":
                 case "playerRotY":
                 case "playerPosX":
-                case "playerPosY":
+                case "playerPosZ":
                 case "playerHealth":
                 case "playerHunger":
                 case "playerThirst":
@@ -111,6 +118,9 @@ public class WorldManager : MonoBehaviour
                         this.playerInv.Add(data[0], ItemDB.getItem(data[1]));
                     }
                     break;
+                case "invIndex":
+                    invIndex = int.Parse(data[1].ToString());
+                    break;
             }
         }
         Debug.Log("Val loaded from file!");
@@ -141,6 +151,16 @@ public class WorldManager : MonoBehaviour
         return this.playerInv;
     }
 
+    public int getInvIndex()
+    {
+        return this.invIndex;
+    }
+
+    public void setInvIndex(int val)
+    {
+        this.invIndex = val;
+    }
+
     public void initWorld()
     {
         if (System.IO.Directory.Exists(this.folderPath)) {
@@ -155,13 +175,14 @@ public class WorldManager : MonoBehaviour
             writer.WriteLine("playerRotX:0.00");
             writer.WriteLine("playerRotY:0.00");
             writer.WriteLine("playerPosX:0.00");
-            writer.WriteLine("playerPosY:0.00");
+            writer.WriteLine("playerPosZ:0.00");
             writer.WriteLine("playerHealth:100.00");
             writer.WriteLine("playerHunger:100.00");
             writer.WriteLine("playerThirst:100.00");
             for(int i = 0; i < 20; i++) {
                 writer.WriteLine("inv" + i + ":none");
             }
+            writer.WriteLine("invIndex:0");
             writer.WriteLine("timeStamp:" + System.DateTime.Now);
             writer.Close();
             init = true;

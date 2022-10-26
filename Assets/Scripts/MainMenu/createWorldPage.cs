@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Text.RegularExpressions;
+using UnityEngine.SceneManagement;
 
 public class createWorldPage : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class createWorldPage : MonoBehaviour
         worldMan.initWorld();
         Debug.Log("Seed: " + seed.ToString());
         worldMan.loadPlayerValFromFile();
+        
+        SceneManager.LoadScene(1);
     }
 
     private bool checkWorldName() {

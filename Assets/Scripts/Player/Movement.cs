@@ -16,6 +16,15 @@ public class Movement : MonoBehaviour
     public KeyCode back = KeyCode.S;
     public KeyCode left = KeyCode.A;
     public KeyCode right = KeyCode.D;
+    private SettingManager settingMan;
+    void Start()
+    {
+        settingMan = GameObject.Find("SettingPersonal").GetComponent<SettingManager>();
+        forward = settingMan.getForward();
+        back = settingMan.getBackward();
+        left = settingMan.getLeft();
+        right = settingMan.getRight();
+    }
 
     // Update checks for key input
     void Update()
