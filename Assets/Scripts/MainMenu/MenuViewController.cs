@@ -14,6 +14,7 @@ public class MenuViewController : MonoBehaviour
     public GameObject creditView;
     public GameObject settingView;
     public GameObject createWorld;
+    public GameObject loadWorldView;
 
     public SettingManager settingMan;
     public WorldManager loadMan;
@@ -38,6 +39,7 @@ public class MenuViewController : MonoBehaviour
         creditView.SetActive(false);
         settingView.SetActive(false);
         createWorld.SetActive(false);
+        loadWorldView.SetActive(false);
     }
 
     // Opens the credit tab
@@ -62,6 +64,7 @@ public class MenuViewController : MonoBehaviour
 
     public void clickedLoad()
     {
-        //TODO: Pick a world to load and get it loaded into the file system
+        loadWorldView.SetActive(true);
+        this.gameObject.SetActive(false);
     }
 }
