@@ -30,10 +30,45 @@ public class PlayerManager : MonoBehaviour
     private bool satEnabled = true;
     private bool hydroEnabled = true;
     
+
+    private SettingManager settingMan;
+    private WorldManager worldMan;
+    Dictionary<string, object> playerSetting;
     // Sets default values
     void Start()
     {
         invActive = false;
+        settingMan = GameObject.Find("SettingPersonal").GetComponent<SettingManager>();
+        worldMan = GameObject.Find("LoadSetting").GetComponent<WorldManager>();
+        invOpen = settingMan.getInvOpen();
+        playerSetting = worldMan.getPlayerVal();
+
+        Vector3 tempPos = new Vector3();
+        object tempVal = 0.00f;
+        playerSetting.TryGetValue("playerPosX", out tempVal);
+        tempPos.Set(float.Parse(tempVal.ToString()), 0, 0);
+        playerSetting.TryGetValue("playerPosY", out tempVal);
+        tempPos.Set(tempPos.x, float.Parse(tempVal.ToString()), 0);
+        playerSetting.TryGetValue("playerPosZ", out tempVal);
+        tempPos.Set(tempPos.x, tempPos.y, float.Parse(tempVal.ToString()));
+
+        Quaternion tempRot = new Quaternion();
+        Vector3 tempRotVec = new Vector3();
+        playerSetting.TryGetValue("playerRotX", out tempVal);
+        tempRotVec.Set(float.Parse(tempVal.ToString()), 0, 0);
+        playerSetting.TryGetValue("playerRotY", out tempVal);
+        tempRotVec.Set(tempRotVec.x, float.Parse(tempVal.ToString()), 0);
+        tempRot.eulerAngles = tempRotVec;
+
+        this.gameObject.transform.SetPositionAndRotation(tempPos, tempRot);
+        this.invOpen = settingMan.getInvOpen();
+        playerSetting.TryGetValue("playerHealth", out tempVal);
+        this.setHealth(float.Parse(tempVal.ToString()));
+        playerSetting.TryGetValue("playerHunger", out tempVal);
+        this.setHydration(float.Parse(tempVal.ToString()));
+        playerSetting.TryGetValue("playerThirst", out tempVal);
+        this.setSaturation(float.Parse(tempVal.ToString()));
+
         //Repeats the updateLoop method every 2.5 seconds
         InvokeRepeating("updateLoop", 0, 2.5f);
     }

@@ -13,6 +13,15 @@ public class FirstPersonCamera : MonoBehaviour
     public float sensitivity = 1.0f;
     public bool invertY = false;
 
+    private SettingManager settingMan;
+    
+    void Start()
+    {
+        settingMan = GameObject.Find("SettingPersonal").GetComponent<SettingManager>();
+        invertY = settingMan.getInvertY();
+        sensitivity = settingMan.getCamSense();
+    }
+    
     // Update check for mouse input
     void Update()
     {

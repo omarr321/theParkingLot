@@ -12,27 +12,27 @@ public static class ItemDB
 {
     private static bool initDB = false;
     private static Dictionary<string, Item> itemDB = new Dictionary<string, Item>();
-    private static Recipe[] recipes = new Recipe[20000];
+    private static Recipe[] recipes = new Recipe[2];
     private static int currIndex = 0;
 
     // Add items to the Dictionary
     // @Parms PlayerManager playerMan : The PlayerManager to use
     public static void initDatabase(PlayerManager playerMan) {
         if (!initDB) {
-            Eatable water = new Eatable("Water Bottle", "A plasic water bottle full of water... I think.", playerMan, 5.0f, 25.0f, 0.0f);
+            Eatable water = new Eatable("waterBottle", "Water Bottle", "A plasic water bottle full of water... I think.", playerMan, 5.0f, 25.0f, 0.0f);
             addItem("waterBottle", water);
-            Eatable cerealBar = new Eatable("Cereal Bar", "A cereal bar still in the wrapper. Feels like it broken into pieces thought.", playerMan, 10.0f, -2.0f, 0.0f);
+            Eatable cerealBar = new Eatable("cerealBar", "Cereal Bar", "A cereal bar still in the wrapper. Feels like it broken into pieces thought.", playerMan, 10.0f, -2.0f, 0.0f);
             addItem("cerealBar", cerealBar);
-            Eatable pills = new Eatable("Pills", "A bunch of random pills. Not sure what type but what do you have to lose?", playerMan, 0.0f, 0.0f, 25.0f);
+            Eatable pills = new Eatable("pills", "Pills", "A bunch of random pills. Not sure what type but what do you have to lose?", playerMan, 0.0f, 0.0f, 25.0f);
             addItem("pills", pills);
             
-            Lore note1 = new Lore("Note - Test", "This is a test note", "According to all known laws of aviation, there is no way a bee should be able to fly."
+            Lore note1 = new Lore("testNote", "Note - Test", "This is a test note", "According to all known laws of aviation, there is no way a bee should be able to fly."
             + "Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don't care what humans think is"
             + "impossible. Yellow, black. Yellow, black. Yellow, black. Yellow, black. Ooh, black and yellow! Let's shake it up a little. Barry! Breakfast is"
             + "ready! Ooming! Hang on a second. Hello? - Barry? - Adam? - Oan you believe this is happening? - I can't. I'll pick you up. Looking sharp. Use the"
             + "stairs. Your father paid good money for those. Sorry. I'm excited. Here's the graduate. We're very proud of you, son. A perfect report card, all B's.");
             addItem("testNote", note1);
-            Lore note2 = new Lore("Long Note", "This is a test note that is long", "According to all known laws of aviation, there is no way a bee should be able to fly."
+            Lore note2 = new Lore("longTestNote", "Long Note", "This is a test note that is long", "According to all known laws of aviation, there is no way a bee should be able to fly."
             + "Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don't care what humans think is impossible."
             + "Yellow, black. Yellow, black. Yellow, black. Yellow, black. Ooh, black and yellow! Let's shake it up a little. Barry! Breakfast is ready! Ooming! Hang on a"
             + "second. Hello? - Barry? - Adam? - Oan you believe this is happening? - I can't. I'll pick you up. Looking sharp. Use the stairs. Your father paid good money"
@@ -55,20 +55,20 @@ public static class ItemDB
             + "the difference? You'll be happy to know that bees, as a species, haven't had one day off in 27 million years. So you'll just work us to death? We'll sure try. Wow! That blew my mind!"
             + "How can you say that? One job forever? That's an insane choice to have to make. I'm relieved. Now we only have to make one decision in life. But, Adam, how could they never have told");
             addItem("longTestNote", note2);
-            Lore note3 = new Lore("Broken Note", "This note i broken into mutiple pages", new string[4]{"This is on page 1!", "This is on the second page!!", "This is on the third page!!!", "This is the final page of the book"});
+            Lore note3 = new Lore("testMutiNote", "Broken Note", "This note i broken into mutiple pages", new string[4]{"This is on page 1!", "This is on the second page!!", "This is on the third page!!!", "This is the final page of the book"});
             addItem("testMutiNote", note3);
 
             // Testing the crafting system
-            Item paper = new Item("Paper", "Just some paper... what more do you want?");
+            Item paper = new Item("paper", "Paper", "Just some paper... what more do you want?");
             addItem("paper", paper);
-            Item ink = new Item("Ink", "Ink to write with... and to drink");
+            Item ink = new Item("ink", "Ink", "Ink to write with... and to drink");
             addItem("ink", ink);
-            Lore noteBook = new Lore("Notebook", "This is a notebook", new string[8] {"Not this page", "Or this one", "Maybe the next one?", "No still not this one", "Your getting close", "So very close", "Here it comes", "HI!"});
+            Lore noteBook = new Lore("notebook", "Notebook", "This is a notebook", new string[8] {"Not this page", "Or this one", "Maybe the next one?", "No still not this one", "Your getting close", "So very close", "Here it comes", "HI!"});
             addItem("notebook", noteBook);
             // End Testing crafting
+            initRecipes();
         }
         initDB = true;
-        initRecipes();
     }
 
     // Add the item the dictionary
@@ -91,16 +91,20 @@ public static class ItemDB
         return temp;
     }
 
+    private static Item getItemInit(string name) {
+        Item temp = null;
+        itemDB.TryGetValue(name, out temp);
+        return temp;
+    }
+
     // Initlizes the recipes for the game
     private static void initRecipes() {
-        RecipeInput testStress = new RecipeInput(getItem("cerealBar"), getItem("cerealBar"), null, null);
-        Recipe recStress = new Recipe(testStress, getItem("paper"));
-        for(int i = 1; i < 20000; i++) {
-            addRecipe(recStress);
-        }
+        RecipeInput testStress = new RecipeInput(getItemInit("cerealBar"), getItemInit("cerealBar"), null, null);
+        Recipe recStress = new Recipe(testStress, getItemInit("paper"));
+        addRecipe(recStress);
 
-        RecipeInput makeNoteBook = new RecipeInput(getItem("paper"), getItem("ink"), null, null);
-        Recipe noteBook = new Recipe(makeNoteBook, getItem("notebook"));
+        RecipeInput makeNoteBook = new RecipeInput(getItemInit("paper"), getItemInit("ink"), null, null);
+        Recipe noteBook = new Recipe(makeNoteBook, getItemInit("notebook"));
         addRecipe(noteBook);
 
         Array.Sort(recipes);
@@ -109,6 +113,7 @@ public static class ItemDB
     // Add a recipe to the database
     // @Parms Recipe rec : The recipe to add
     private static void addRecipe(Recipe rec) {
+        //Debug.Log(currIndex);
         recipes[currIndex] = rec;
         currIndex++;
     }

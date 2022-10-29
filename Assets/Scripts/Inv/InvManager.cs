@@ -13,18 +13,22 @@ public class InvManager : MonoBehaviour
     private int numSlots;
     private Item[] items;
     public TMPro.TextMeshProUGUI[] textSlots;
-    
+    private WorldManager worldMan;
     // Init the Item Database so it can be used by any script and set default values
     void Start()
     {
         ItemDB.initDatabase(this.GetComponent<PlayerManager>());
-        currentEnd = 0;
+        worldMan = GameObject.Find("LoadSetting").GetComponent<WorldManager>();
+        currentEnd = worldMan.getInvIndex();
         numSlots = textSlots.Length;
         items = new Item[numSlots];
 
-        foreach (TMPro.TextMeshProUGUI slotText in textSlots)
-        {
-            slotText.text = "------";
+        Dictionary<string, Item> tempInv = worldMan.getPlayerInv();
+        
+        Item tempItem = null;
+        for(int i = 0; i < 20; i++) {
+            tempInv.TryGetValue("inv" + i, out tempItem);
+            items[i] = tempItem;
         }
     }
 

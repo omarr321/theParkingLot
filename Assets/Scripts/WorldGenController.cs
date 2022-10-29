@@ -30,9 +30,13 @@ public class WorldGenController : MonoBehaviour
     public GameObject loadingScreen;
     public PlayerManager playerMan;
 
+    private WorldManager worldMan;
+
     // Locks the player and set defualt values as well as the seed.
     void Start()
     {
+        worldMan = GameObject.Find("LoadSetting").GetComponent<WorldManager>();
+
         loadingScreen.SetActive(true);
         playerLock.lockPlayer(this);
         playerLock.disableCam(this);
@@ -40,7 +44,7 @@ public class WorldGenController : MonoBehaviour
         playerMan.setEnabledHealth(false);
         playerMan.setEnabledHydro(false);
         playerMan.setEnabledSat(false);
-        seed = Random.Range(100000000,1000000000);
+        seed = worldMan.getSeed();
         Debug.Log("Seed: " + seed.ToString());
         StartCoroutine(initStart());
     }
