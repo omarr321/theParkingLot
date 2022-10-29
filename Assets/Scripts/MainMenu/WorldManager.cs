@@ -22,6 +22,8 @@ public class WorldManager : MonoBehaviour
 
     private bool init = false;
 
+    private string lastPlayed = "";
+
     // Set this gameObject to not be destory on scene load
     void Awake()
     {
@@ -41,6 +43,7 @@ public class WorldManager : MonoBehaviour
 
     public void setWorldName(string name)
     {
+        this.init = false;
         this.worldName = name;
         this.folderPath = Path.Combine(Application.persistentDataPath, "saves", this.worldName);
     }
@@ -65,6 +68,7 @@ public class WorldManager : MonoBehaviour
         foreach(KeyValuePair<string, Item> data in this.playerInv){
             writer.WriteLine(data.Key + ":" + data.Value.getSaveName());
         }
+        writer.WriteLine("timeStamp:" + System.DateTime.Now);
         writer.Close();
     }
 
@@ -85,6 +89,7 @@ public class WorldManager : MonoBehaviour
                 case "playerRotX":
                 case "playerRotY":
                 case "playerPosX":
+                case "playerPosY":
                 case "playerPosZ":
                 case "playerHealth":
                 case "playerHunger":
@@ -119,7 +124,10 @@ public class WorldManager : MonoBehaviour
                     }
                     break;
                 case "invIndex":
-                    invIndex = int.Parse(data[1].ToString());
+                    this.invIndex = int.Parse(data[1].ToString());
+                    break;
+                case "timeStamp":
+                    this.lastPlayed = data[1].ToString() + ":" + data[2].ToString() + ":" + data[3].ToString();
                     break;
             }
         }
@@ -139,6 +147,11 @@ public class WorldManager : MonoBehaviour
     public string getWorldPath()
     {
         return this.folderPath;
+    }
+
+    public string getLastPlayed()
+    {
+        return this.lastPlayed;
     }
 
     public Dictionary<string, object> getPlayerVal()
@@ -175,6 +188,7 @@ public class WorldManager : MonoBehaviour
             writer.WriteLine("playerRotX:0.00");
             writer.WriteLine("playerRotY:0.00");
             writer.WriteLine("playerPosX:0.00");
+            writer.WriteLine("playerPosY:1.00");
             writer.WriteLine("playerPosZ:0.00");
             writer.WriteLine("playerHealth:100.00");
             writer.WriteLine("playerHunger:100.00");

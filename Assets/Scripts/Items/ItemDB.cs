@@ -12,7 +12,7 @@ public static class ItemDB
 {
     private static bool initDB = false;
     private static Dictionary<string, Item> itemDB = new Dictionary<string, Item>();
-    private static Recipe[] recipes = new Recipe[20000];
+    private static Recipe[] recipes = new Recipe[2];
     private static int currIndex = 0;
 
     // Add items to the Dictionary
@@ -66,9 +66,9 @@ public static class ItemDB
             Lore noteBook = new Lore("notebook", "Notebook", "This is a notebook", new string[8] {"Not this page", "Or this one", "Maybe the next one?", "No still not this one", "Your getting close", "So very close", "Here it comes", "HI!"});
             addItem("notebook", noteBook);
             // End Testing crafting
+            initRecipes();
         }
         initDB = true;
-        initRecipes();
     }
 
     // Add the item the dictionary
@@ -91,16 +91,20 @@ public static class ItemDB
         return temp;
     }
 
+    private static Item getItemInit(string name) {
+        Item temp = null;
+        itemDB.TryGetValue(name, out temp);
+        return temp;
+    }
+
     // Initlizes the recipes for the game
     private static void initRecipes() {
-        RecipeInput testStress = new RecipeInput(getItem("cerealBar"), getItem("cerealBar"), null, null);
-        Recipe recStress = new Recipe(testStress, getItem("paper"));
-        for(int i = 1; i < 20000; i++) {
-            addRecipe(recStress);
-        }
+        RecipeInput testStress = new RecipeInput(getItemInit("cerealBar"), getItemInit("cerealBar"), null, null);
+        Recipe recStress = new Recipe(testStress, getItemInit("paper"));
+        addRecipe(recStress);
 
-        RecipeInput makeNoteBook = new RecipeInput(getItem("paper"), getItem("ink"), null, null);
-        Recipe noteBook = new Recipe(makeNoteBook, getItem("notebook"));
+        RecipeInput makeNoteBook = new RecipeInput(getItemInit("paper"), getItemInit("ink"), null, null);
+        Recipe noteBook = new Recipe(makeNoteBook, getItemInit("notebook"));
         addRecipe(noteBook);
 
         Array.Sort(recipes);
@@ -109,6 +113,7 @@ public static class ItemDB
     // Add a recipe to the database
     // @Parms Recipe rec : The recipe to add
     private static void addRecipe(Recipe rec) {
+        //Debug.Log(currIndex);
         recipes[currIndex] = rec;
         currIndex++;
     }

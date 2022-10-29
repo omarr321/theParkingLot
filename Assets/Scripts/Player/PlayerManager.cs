@@ -47,8 +47,10 @@ public class PlayerManager : MonoBehaviour
         object tempVal = 0.00f;
         playerSetting.TryGetValue("playerPosX", out tempVal);
         tempPos.Set(float.Parse(tempVal.ToString()), 0, 0);
+        playerSetting.TryGetValue("playerPosY", out tempVal);
+        tempPos.Set(tempPos.x, float.Parse(tempVal.ToString()), 0);
         playerSetting.TryGetValue("playerPosZ", out tempVal);
-        tempPos.Set(tempPos.x, 0, float.Parse(tempVal.ToString()));
+        tempPos.Set(tempPos.x, tempPos.y, float.Parse(tempVal.ToString()));
 
         Quaternion tempRot = new Quaternion();
         Vector3 tempRotVec = new Vector3();
