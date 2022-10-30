@@ -4,23 +4,31 @@ using UnityEngine;
 
 public class pauseOpen : MonoBehaviour
 {
-   public GameObject pauseMenu;
-   public PlayerControlLock playerLock;
+    public pauseMenuController pauseMan;
+    public PlayerControlLock playerLock;
 
-    void Update()
-    {
+    private bool flag;
+
+    void Start() {
+        pauseMan.closeAllWindows();
+        flag = false;
+    }
+
+    void Update() {
         if (Input.GetKeyDown(KeyCode.Escape)) {
-            if(playerLock.noOwner()) {
-                if (pauseMenu.activeInHierarchy) {
+            if(playerLock.noOwner() || playerLock.checkOwner(this)) {
+                if (flag) {
+                    flag = false;
                     playerLock.enableCam(this);
                     playerLock.enableMovement(this);
-                    pauseMenu.SetActive(false);
+                    pauseMan.closeAllWindows();
                     playerLock.unlockPlayer(this);
                 } else {
+                    flag = true;
                     playerLock.lockPlayer(this);
                     playerLock.disableCam(this);
                     playerLock.disableMovement(this);
-                    pauseMenu.SetActive(true);
+                    pauseMan.backToPauseMenu();
                 }
             }
         }

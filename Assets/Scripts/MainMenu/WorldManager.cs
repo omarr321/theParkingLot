@@ -53,9 +53,9 @@ public class WorldManager : MonoBehaviour
         this.playerVal = playerVal;
     }
 
-    public void setPlayerInv(Dictionary<string, Item> playerInv)
+    public void setPlayerInv(Dictionary<string, Item> val)
     {
-        this.playerInv = playerInv;
+        this.playerInv = val;
     }
 
     public void savePlayerValToFile()
@@ -66,8 +66,14 @@ public class WorldManager : MonoBehaviour
                 writer.WriteLine(data.Key + ":" + data.Value.ToString());
         }
         foreach(KeyValuePair<string, Item> data in this.playerInv){
-            writer.WriteLine(data.Key + ":" + data.Value.getSaveName());
+            //Debug.Log(data.Key + ":" + data.Value);
+            if (data.Value == null) {
+                writer.WriteLine(data.Key + ":none");
+            } else {
+                writer.WriteLine(data.Key + ":" + data.Value.getSaveName());
+            }
         }
+        writer.WriteLine("invIndex:" + this.invIndex);
         writer.WriteLine("timeStamp:" + System.DateTime.Now);
         writer.Close();
     }
