@@ -30,6 +30,8 @@ public class InvManager : MonoBehaviour
             tempInv.TryGetValue("inv" + i, out tempItem);
             items[i] = tempItem;
         }
+
+        updateAllInv();
     }
 
     // Check the val of a inv slot and updates accordingly
@@ -114,5 +116,15 @@ public class InvManager : MonoBehaviour
         }
 
         return items[index];
+    }
+
+    public void saveInv() {
+        Dictionary<string, Item> tempInv = new Dictionary<string, Item>();
+        
+        for(int i = 0; i < 20; i++) {
+            tempInv.Add("inv" + i, this.items[i]);
+        }
+        worldMan.setPlayerInv(tempInv);
+        worldMan.setInvIndex(this.currentEnd);
     }
 }

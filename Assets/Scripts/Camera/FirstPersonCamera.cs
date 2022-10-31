@@ -18,8 +18,7 @@ public class FirstPersonCamera : MonoBehaviour
     void Start()
     {
         settingMan = GameObject.Find("SettingPersonal").GetComponent<SettingManager>();
-        invertY = settingMan.getInvertY();
-        sensitivity = settingMan.getCamSense();
+        updateControls();
     }
     
     // Update check for mouse input
@@ -54,5 +53,11 @@ public class FirstPersonCamera : MonoBehaviour
     void LateUpdate()
     {
         transform.rotation = Quaternion.Euler(new Vector3(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, 0));
+    }
+
+    public void updateControls()
+    {
+        invertY = settingMan.getInvertY();
+        sensitivity = settingMan.getCamSense();
     }
 }

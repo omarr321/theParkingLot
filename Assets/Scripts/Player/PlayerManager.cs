@@ -40,7 +40,7 @@ public class PlayerManager : MonoBehaviour
         invActive = false;
         settingMan = GameObject.Find("SettingPersonal").GetComponent<SettingManager>();
         worldMan = GameObject.Find("LoadSetting").GetComponent<WorldManager>();
-        invOpen = settingMan.getInvOpen();
+        this.updateControls();
         playerSetting = worldMan.getPlayerVal();
 
         Vector3 tempPos = new Vector3();
@@ -95,6 +95,11 @@ public class PlayerManager : MonoBehaviour
             }
             updated = true;
         }
+    }
+
+    public void updateControls() 
+    {
+        invOpen = settingMan.getInvOpen();
     }
 
     // Loses saturation and hydration everytime this method is called
@@ -232,6 +237,22 @@ public class PlayerManager : MonoBehaviour
     // @Parms bool val : True if hydration is enabled, false if otherwise
     public void setEnabledHydro(bool val) {
         this.hydroEnabled = val;
+    }
+
+    public void savePlayer() {
+        Dictionary<string, object> playerVal = new Dictionary<string, object>();
+        playerVal.Add("playerRotX", this.gameObject.transform.rotation.x);
+        playerVal.Add("playerRotY", this.gameObject.transform.rotation.y);
+
+        playerVal.Add("playerPosX", this.gameObject.transform.position.x);
+        playerVal.Add("playerPosY", this.gameObject.transform.position.y);
+        playerVal.Add("playerPosZ", this.gameObject.transform.position.z);
+
+        playerVal.Add("playerHealth", this.Health);
+        playerVal.Add("playerHunger", this.Saturation);
+        playerVal.Add("playerThirst", this.Hydration);
+
+        worldMan.setPlayerVal(playerVal);
     }
 
     // Updates the GUI to the current Health, Hunger, and Thirst values

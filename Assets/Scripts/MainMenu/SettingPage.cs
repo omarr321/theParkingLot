@@ -20,7 +20,15 @@ public class SettingPage : MonoBehaviour
 
     void OnEnable ()
     {
+        if (settingMan == null) {
+            settingMan = GameObject.Find("SettingPersonal").GetComponent<SettingManager>();
+        }
         loadValFromFile();
+    }
+
+    public void restoreDefault()
+    {
+        settingMan.restoreDefaultVal();
     }
 
     public void loadValFromFile()
@@ -69,7 +77,9 @@ public class SettingPage : MonoBehaviour
 
     public void closeView()
     {
-        menuView.gameObject.SetActive(true);
+        if (menuView != null) {
+            menuView.gameObject.SetActive(true);
+        }
         this.gameObject.SetActive(false);
     }
 }

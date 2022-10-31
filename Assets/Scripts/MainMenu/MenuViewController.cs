@@ -45,6 +45,7 @@ public class MenuViewController : MonoBehaviour
     // Opens the credit tab
     public void toggleCredit()
     {
+        this.gameObject.SetActive(false);
         creditView.SetActive(!creditView.activeInHierarchy);
     }
 
@@ -66,5 +67,10 @@ public class MenuViewController : MonoBehaviour
     {
         loadWorldView.SetActive(true);
         this.gameObject.SetActive(false);
+    }
+
+    public void clickedQuit()
+    {
+        Application.Quit();
     }
 }

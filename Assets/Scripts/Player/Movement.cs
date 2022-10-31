@@ -20,10 +20,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         settingMan = GameObject.Find("SettingPersonal").GetComponent<SettingManager>();
-        forward = settingMan.getForward();
-        back = settingMan.getBackward();
-        left = settingMan.getLeft();
-        right = settingMan.getRight();
+        updateControls();
     }
 
     // Update checks for key input
@@ -44,5 +41,13 @@ public class Movement : MonoBehaviour
         {
             rb.AddRelativeForce(Vector3.right * speed * Time.deltaTime);
         }
+    }
+
+    public void updateControls() 
+    {
+        forward = settingMan.getForward();
+        back = settingMan.getBackward();
+        left = settingMan.getLeft();
+        right = settingMan.getRight();
     }
 }
