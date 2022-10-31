@@ -15,6 +15,8 @@ public class LoadPage : MonoBehaviour
     public MenuViewController menuView;
     public Button loadButt;
 
+    public Button deleteButt;
+
     private Color grey = new Color(0.6f, 0.6f, 0.6f, 1.0f);
     private Color white = new Color(1f, 1f, 1f, 1.0f);
     private string folderPath;
@@ -22,8 +24,15 @@ public class LoadPage : MonoBehaviour
     
     void Start()
     {
+        refreshList();
+    }
+
+    private void refreshList()
+    {
         loadButt.enabled = false;
         loadButt.image.color = this.grey;
+        deleteButt.enabled = false;
+        deleteButt.image.color = this.grey;
         titleName.text = "";
         lastPlayed.text = "";
         worldList.onValueChanged.AddListener(onWorldChanged);
@@ -53,6 +62,12 @@ public class LoadPage : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    public void deleteWorld()
+    {
+        worldMan.deleteWorld();
+        this.refreshList();
+    }
+
     private void onWorldChanged(int arg0)
     {
         if (worldList.value == 0) {
@@ -63,6 +78,8 @@ public class LoadPage : MonoBehaviour
         } else {
             loadButt.image.color = this.white;
             loadButt.enabled = true;
+            deleteButt.enabled = true;
+            deleteButt.image.color = this.white;
             worldMan.setWorldName(worldFolders[worldList.value-1]);
             worldMan.initWorld();
             worldMan.loadPlayerValFromFile();

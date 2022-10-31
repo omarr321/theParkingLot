@@ -137,6 +137,7 @@ public class WorldManager : MonoBehaviour
                     break;
             }
         }
+        reader.Close();
         Debug.Log("Val loaded from file!");
     }
 
@@ -178,6 +179,12 @@ public class WorldManager : MonoBehaviour
     public void setInvIndex(int val)
     {
         this.invIndex = val;
+    }
+
+    public void deleteWorld() 
+    {
+        System.IO.Directory.Delete(this.folderPath, true);
+        this.init = false;
     }
 
     public void initWorld()
