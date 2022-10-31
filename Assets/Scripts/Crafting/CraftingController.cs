@@ -29,7 +29,7 @@ public class CraftingController : MonoBehaviour
     void Start()
     {
         settingMan = GameObject.Find("SettingPersonal").GetComponent<SettingManager>();
-        openKey = settingMan.getCrafting();
+        updateControls();
         personalCraftingTable.SetActive(false);
         craftedItem.text = "";
         mainItemIndex = -1;
@@ -54,6 +54,11 @@ public class CraftingController : MonoBehaviour
                 updateDisplay();
             }
         }
+    }
+
+    public void updateControls()
+    {
+        openKey = settingMan.getCrafting();
     }
 
     // Closes view

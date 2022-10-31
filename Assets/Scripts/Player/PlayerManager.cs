@@ -40,7 +40,7 @@ public class PlayerManager : MonoBehaviour
         invActive = false;
         settingMan = GameObject.Find("SettingPersonal").GetComponent<SettingManager>();
         worldMan = GameObject.Find("LoadSetting").GetComponent<WorldManager>();
-        invOpen = settingMan.getInvOpen();
+        this.updateControls();
         playerSetting = worldMan.getPlayerVal();
 
         Vector3 tempPos = new Vector3();
@@ -95,6 +95,11 @@ public class PlayerManager : MonoBehaviour
             }
             updated = true;
         }
+    }
+
+    public void updateControls() 
+    {
+        invOpen = settingMan.getInvOpen();
     }
 
     // Loses saturation and hydration everytime this method is called
