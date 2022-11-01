@@ -51,6 +51,8 @@ public class CraftingController : MonoBehaviour
                 playerLock.disableCam(this);
                 playerLock.disableMovement(this);
                 personalCraftingTable.SetActive(true);
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = true;
                 updateDisplay();
             }
         }
@@ -70,6 +72,8 @@ public class CraftingController : MonoBehaviour
         playerLock.enableMovement(this);
         playerLock.unlockPlayer(this);
         personalCraftingTable.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Updates the dropdown menu options

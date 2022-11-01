@@ -87,11 +87,15 @@ public class PlayerManager : MonoBehaviour
                 playerLock.lockPlayer(this);
                 playerLock.disableCam(this);
                 playerLock.disableMovement(this);
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = true;
             } else {
                 invInter.chanceCurrent(slot0);
                 playerLock.enableCam(this);
                 playerLock.enableMovement(this);
                 playerLock.unlockPlayer(this);
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
             }
             updated = true;
         }

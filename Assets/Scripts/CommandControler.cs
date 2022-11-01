@@ -30,6 +30,8 @@ public class CommandControler : MonoBehaviour
                 playerLock.lockPlayer(this);
                 playerLock.disableCam(this);
                 playerLock.disableMovement(this);
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = true;
             }
         }
     }
@@ -41,6 +43,8 @@ public class CommandControler : MonoBehaviour
         playerLock.enableCam(this);
         playerLock.enableMovement(this);
         playerLock.unlockPlayer(this);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Process the command from the text box
