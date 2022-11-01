@@ -33,6 +33,7 @@ public class InvInteractable : MonoBehaviour
     public TMPro.TextMeshProUGUI itemHydroValue;
     public UnityEngine.UI.Button consumeButton;
     public UnityEngine.UI.Button loreButton;
+    public UnityEngine.UI.Button deleteButton;
     // Start set default values and set slot zero
     void Start()
     {
@@ -95,10 +96,11 @@ public class InvInteractable : MonoBehaviour
     private void updateButtons(Item item) {
         consumeButton.gameObject.SetActive(false);
         loreButton.gameObject.SetActive(false);
+        deleteButton.gameObject.SetActive(false);
         if (item == null) {
             return;
         }
-
+        deleteButton.gameObject.SetActive(true);
         if (item.GetType() == typeof(Lore)) {
             loreButton.gameObject.SetActive(true);
         } else if (item.GetType() == typeof(Eatable)){
@@ -151,6 +153,12 @@ public class InvInteractable : MonoBehaviour
         Lore temp = (Lore)this.selectedItem;
         invLore.gameObject.SetActive(true);
         StartCoroutine(invLore.setText(temp.getName(), temp.getLore()));
+        this.chanceCurrent(slotZ);
+    }
+
+    public void deleteItem()
+    {
+        invMan.removeItem(int.Parse(selectedCell.name.Split("-")[1])-1);
         this.chanceCurrent(slotZ);
     }
 }

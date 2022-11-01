@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,7 +22,11 @@ public class SettingPage : MonoBehaviour
     void OnEnable ()
     {
         if (settingMan == null) {
-            settingMan = GameObject.Find("SettingPersonal").GetComponent<SettingManager>();
+            try {
+                settingMan = GameObject.Find("SettingPersonal").GetComponent<SettingManager>();
+            } catch(NullReferenceException) {
+                throw new Exception("Error: The game must be started from Main Menu scene");
+            }
         }
         loadValFromFile();
     }
