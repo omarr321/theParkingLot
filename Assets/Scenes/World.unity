@@ -2148,6 +2148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMan: {fileID: 701619925}
+  playerMan: {fileID: 578133180}
   playerLock: {fileID: 135249999}
 --- !u!1 &139264221
 GameObject:
