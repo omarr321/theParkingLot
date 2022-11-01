@@ -24,6 +24,8 @@ public class MenuViewController : MonoBehaviour
     void Start()
     {
         Debug.Log(Application.persistentDataPath);
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
         try {
             FileStream playerPref = File.Open(Path.Combine(Application.persistentDataPath, "playerPref.dat"), FileMode.Open);
             playerPref.Close();

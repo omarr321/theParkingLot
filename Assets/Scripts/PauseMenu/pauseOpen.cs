@@ -27,6 +27,8 @@ public class pauseOpen : MonoBehaviour
                     playerMan.setEnabledHydro(true);
                     playerMan.setEnabledSat(true);
                     playerLock.unlockPlayer(this);
+                    Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.visible = false;
                 } else {
                     flag = true;
                     playerLock.lockPlayer(this);
@@ -36,6 +38,8 @@ public class pauseOpen : MonoBehaviour
                     playerMan.setEnabledHealth(false);
                     playerMan.setEnabledHydro(false);
                     playerMan.setEnabledSat(false);
+                    Cursor.lockState = CursorLockMode.Confined;
+                    Cursor.visible = true;
                 }
             }
         }
