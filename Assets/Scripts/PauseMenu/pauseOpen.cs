@@ -5,6 +5,7 @@ using UnityEngine;
 public class pauseOpen : MonoBehaviour
 {
     public pauseMenuController pauseMan;
+    public PlayerManager playerMan;
     public PlayerControlLock playerLock;
 
     private bool flag;
@@ -22,6 +23,9 @@ public class pauseOpen : MonoBehaviour
                     playerLock.enableCam(this);
                     playerLock.enableMovement(this);
                     pauseMan.closeAllWindows();
+                    playerMan.setEnabledHealth(true);
+                    playerMan.setEnabledHydro(true);
+                    playerMan.setEnabledSat(true);
                     playerLock.unlockPlayer(this);
                 } else {
                     flag = true;
@@ -29,6 +33,9 @@ public class pauseOpen : MonoBehaviour
                     playerLock.disableCam(this);
                     playerLock.disableMovement(this);
                     pauseMan.backToPauseMenu();
+                    playerMan.setEnabledHealth(false);
+                    playerMan.setEnabledHydro(false);
+                    playerMan.setEnabledSat(false);
                 }
             }
         }
