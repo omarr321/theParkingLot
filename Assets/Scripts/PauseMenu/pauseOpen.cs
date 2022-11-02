@@ -7,13 +7,11 @@ public class pauseOpen : MonoBehaviour
     public pauseMenuController pauseMan;
     public PlayerManager playerMan;
     public PlayerControlLock playerLock;
-    public GameObject background;
 
     private bool flag;
 
     void Start() {
         pauseMan.closeAllWindows();
-        background.SetActive(false);
         flag = false;
     }
 
@@ -31,7 +29,6 @@ public class pauseOpen : MonoBehaviour
                     playerLock.unlockPlayer(this);
                     Cursor.lockState = CursorLockMode.Locked;
                     Cursor.visible = false;
-                    background.SetActive(false);
                 } else {
                     flag = true;
                     playerLock.lockPlayer(this);
@@ -43,7 +40,6 @@ public class pauseOpen : MonoBehaviour
                     playerMan.setEnabledSat(false);
                     Cursor.lockState = CursorLockMode.Confined;
                     Cursor.visible = true;
-                    background.SetActive(true);
                 }
             }
         }
