@@ -17,7 +17,7 @@ public class InvManager : MonoBehaviour
     // Init the Item Database so it can be used by any script and set default values
     void Start()
     {
-        ItemDB.initDatabase(this.GetComponent<PlayerManager>());
+        ItemDB.reinitDatabase(this.GetComponent<PlayerManager>());
         worldMan = GameObject.Find("LoadSetting").GetComponent<WorldManager>();
         currentEnd = worldMan.getInvIndex();
         numSlots = textSlots.Length;
