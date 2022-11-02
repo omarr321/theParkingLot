@@ -71,6 +71,14 @@ public static class ItemDB
         initDB = true;
     }
 
+    public static void reinitDatabase(PlayerManager playerMan)
+    {
+        itemDB.Clear();
+        initDB = false;
+        currIndex = 0;
+        initDatabase(playerMan);
+    }
+
     // Add the item the dictionary
     // @Parms string name : The name to store the item by
     // @Parms Item item : Item to add
