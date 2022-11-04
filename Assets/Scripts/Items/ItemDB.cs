@@ -13,7 +13,8 @@ public static class ItemDB
     private static bool initDB = false;
     private static Dictionary<string, Item> itemDB = new Dictionary<string, Item>();
     private static Recipe[] recipes = new Recipe[2];
-    private static int currIndex = 0;
+    private static Dictionary<string, LootTable> lootTableDB = new Dictionary<string, LootTable>();
+    private static int currIndexRec = 0;
 
     // Add items to the Dictionary
     // @Parms PlayerManager playerMan : The PlayerManager to use
@@ -67,6 +68,7 @@ public static class ItemDB
             addItem("notebook", noteBook);
             // End Testing crafting
             initRecipes();
+            initLootTables();
         }
         initDB = true;
     }
@@ -75,7 +77,8 @@ public static class ItemDB
     {
         itemDB.Clear();
         initDB = false;
-        currIndex = 0;
+        currIndexRec = 0;
+        lootTableDB.Clear();
         initDatabase(playerMan);
     }
 
@@ -122,8 +125,25 @@ public static class ItemDB
     // @Parms Recipe rec : The recipe to add
     private static void addRecipe(Recipe rec) {
         //Debug.Log(currIndex);
-        recipes[currIndex] = rec;
-        currIndex++;
+        recipes[currIndexRec] = rec;
+        currIndexRec++;
+    }
+
+    private static void initLootTables() {
+        LootTable temp = new LootTable();
+        temp.addItem(getItemInit("waterBottle"), .50f);
+        temp.addItem(getItemInit("ink"), .50f);
+        addLootTables("test", temp);
+    }
+
+    private static void addLootTables(string name, LootTable loot) {
+        lootTableDB.Add(name, loot);
+    }
+
+    public static LootTable getLootTable(string name) {
+        LootTable temp = null;
+        lootTableDB.TryGetValue(name, out temp);
+        return temp;
     }
 
     // Gets an item from a recipe
