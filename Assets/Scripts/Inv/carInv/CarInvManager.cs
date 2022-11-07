@@ -14,11 +14,16 @@ public class CarInvManager : MonoBehaviour
     private Item[] items;
     public TMPro.TextMeshProUGUI[] textSlots;
     private WorldManager worldMan;
+    private SettingManager settingMan;
+    public GameObject carInvPage;
+    public GameObject interatePage;
+    public GameObject cam;
     // Init the Item Database so it can be used by any script and set default values
     void Start()
     {
         ItemDB.reinitDatabase(this.GetComponent<PlayerManager>());
         worldMan = GameObject.Find("LoadSetting").GetComponent<WorldManager>();
+        settingMan = GameObject.Find("SettingPersonal").GetComponent<SettingManager>();
         currentEnd = worldMan.getInvIndex();
         numSlots = textSlots.Length;
         items = new Item[numSlots];
@@ -33,6 +38,22 @@ public class CarInvManager : MonoBehaviour
         }
         */
         updateAllInv();
+        interatePage.SetActive(false);
+        carInvPage.SetActive(false);
+    }
+
+    void Update() {
+        LayerMask layerMask = LayerMask.GetMask("Car");
+        RaycastHit hit;
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 10.0f)) {
+            if (hit.transform.gameObject.tag == "Car") {
+                interatePage.SetActive(true);
+            } else {
+                interatePage.SetActive(false);
+            }
+        } else {
+            interatePage.SetActive(false);
+        }
     }
 
     // Check the val of a inv slot and updates accordingly

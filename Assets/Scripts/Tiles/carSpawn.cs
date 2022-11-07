@@ -23,6 +23,7 @@ public class carSpawn : MonoBehaviour
 
         if (Random.Range(0.0f,100.0f) <= spawnChance){
             GameObject carTemp = Instantiate(this.carList[Random.Range(0, this.carList.Length)]);
+            carTemp.tag = "Car";
             carTemp.transform.localScale = new Vector3(0.70f, 0.70f, 0.70f);
             carTemp.transform.position = this.gameObject.transform.position;
             carTemp.transform.rotation = this.gameObject.transform.rotation;
