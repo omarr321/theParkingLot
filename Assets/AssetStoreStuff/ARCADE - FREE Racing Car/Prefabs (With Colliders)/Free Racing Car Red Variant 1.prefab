@@ -59,8 +59,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Free Racing Car Red Variant 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: -1549369873896779111, guid: 133308cdb8794744caaef026bde9e1f0, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 133308cdb8794744caaef026bde9e1f0, type: 3}
 --- !u!1 &8087665756752232621 stripped
 GameObject:

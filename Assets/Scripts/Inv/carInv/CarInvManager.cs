@@ -18,6 +18,12 @@ public class CarInvManager : MonoBehaviour
     public GameObject carInvPage;
     public GameObject interatePage;
     public GameObject cam;
+    public PlayerControlLock playerLock;
+    public TMPro.TextMeshProUGUI slotZ;
+    public CarLoadManager carLoadMan;
+
+    public string lootTableName;
+
     // Init the Item Database so it can be used by any script and set default values
     void Start()
     {
@@ -28,15 +34,6 @@ public class CarInvManager : MonoBehaviour
         numSlots = textSlots.Length;
         items = new Item[numSlots];
 
-        /*
-        Dictionary<string, Item> tempInv = worldMan.getPlayerInv();
-        
-        Item tempItem = null;
-        for(int i = 0; i < 20; i++) {
-            tempInv.TryGetValue("inv" + i, out tempItem);
-            items[i] = tempItem;
-        }
-        */
         updateAllInv();
         interatePage.SetActive(false);
         carInvPage.SetActive(false);
@@ -45,14 +42,62 @@ public class CarInvManager : MonoBehaviour
     void Update() {
         LayerMask layerMask = LayerMask.GetMask("Car");
         RaycastHit hit;
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 10.0f)) {
+        if (Physics.Raycast(cam.transform.position + new Vector3(0f, .5f,0f), cam.transform.forward, out hit, 3.0f)) {
             if (hit.transform.gameObject.tag == "Car") {
                 interatePage.SetActive(true);
+                interatePage.GetComponent<TMPro.TextMeshProUGUI>().text = "Press \'" + settingMan.getInteract().ToString() + "\' to interact";
+                if (Input.GetKeyDown(settingMan.getInteract())) {
+                    if(playerLock.noOwner()) {
+                        playerLock.lockPlayer(this);
+                        playerLock.disableCam(this);
+                        playerLock.disableMovement(this);
+                        carInvPage.SetActive(true);
+                        carInvPage.transform.GetChild(1).GetComponent<CarInvInteractable>().chanceCurrent(slotZ);
+                        Cursor.lockState = CursorLockMode.Confined;
+                        Cursor.visible = true;
+                        interatePage.SetActive(true);
+                        updatePage(hit.transform.gameObject.name);
+                    }
+                }
             } else {
                 interatePage.SetActive(false);
             }
         } else {
             interatePage.SetActive(false);
+        }
+        if (interatePage.activeInHierarchy && Input.GetKeyDown(KeyCode.Escape)) {
+            playerLock.enableCam(this);
+            playerLock.enableMovement(this);
+            playerLock.unlockPlayer(this);
+            interatePage.SetActive(false);
+            carInvPage.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
+
+    private void updatePage(string carName) {
+        if (carLoadMan.checkCarSave(carName)) {
+
+        } else {
+            string[] temp = carName.Split(" ");
+            
+            string[] tileCordString = temp[0].Split(new char[] {',', '(', ')'});
+            int[] tileCord = new int[] {int.Parse(tileCordString[1]), int.Parse(tileCordString[2])};
+            
+            int carNum = int.Parse(temp[1].Split("-")[0]);
+
+            int[] hashIn = new int[] {worldMan.getSeed(), tileCord[0], tileCord[1], carNum};
+            var hash = Hash128.Compute(hashIn).ToString();
+
+            LootTable loot = ItemDB.getLootTable(this.lootTableName);
+            loot.setSeed(hash.GetHashCode());
+
+            for (int i = 0; i < items.Length; i++) {
+                items[i] = loot.getRandomItem();
+            }
+
+            updateAllInv();
         }
     }
 

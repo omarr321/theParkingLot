@@ -20,7 +20,7 @@ public class CarInvInteractable : MonoBehaviour
     
     // Ref to slot zero, a zero width and hight slot
     // NOTE: This is needed for the highlight to work
-    private TMPro.TextMeshProUGUI slotZ;
+    public TMPro.TextMeshProUGUI slotZ;
     
     private Item selectedItem;
     
@@ -42,7 +42,7 @@ public class CarInvInteractable : MonoBehaviour
         lastSelectedCell = null;
         highlightedCell = null;
         lastHighlightedCell = null;
-        slotZ = GameObject.Find("Slot-0").GetComponent<TMPro.TextMeshProUGUI>();
+        //slotZ = GameObject.Find("Slot-0").GetComponent<TMPro.TextMeshProUGUI>();
     }
 
     // Chancges the highlighted text to the next text and changes the color accordingly

@@ -674,7 +674,7 @@ GameObject:
   - component: {fileID: 66050715}
   - component: {fileID: 66050714}
   m_Layer: 5
-  m_Name: ItemHungerValue
+  m_Name: CarItemHungerValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2325,6 +2325,7 @@ GameObject:
   - component: {fileID: 135249998}
   - component: {fileID: 135249999}
   - component: {fileID: 135250000}
+  - component: {fileID: 135250001}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -2420,6 +2421,18 @@ MonoBehaviour:
   pauseMan: {fileID: 701619925}
   playerMan: {fileID: 578133180}
   playerLock: {fileID: 135249999}
+--- !u!114 &135250001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135249995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c6d83820508d443b6a730947284884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &139264221
 GameObject:
   m_ObjectHideFlags: 0
@@ -3344,7 +3357,7 @@ GameObject:
   - component: {fileID: 184107026}
   - component: {fileID: 184107025}
   m_Layer: 5
-  m_Name: ItemLore
+  m_Name: CarItemLore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4420,7 +4433,7 @@ GameObject:
   - component: {fileID: 225439566}
   - component: {fileID: 225439565}
   m_Layer: 5
-  m_Name: ItemDesc
+  m_Name: CarItemDesc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6560,7 +6573,7 @@ GameObject:
   - component: {fileID: 413098983}
   - component: {fileID: 413098982}
   m_Layer: 5
-  m_Name: ItemDelete
+  m_Name: CarItemDelete
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9081,6 +9094,10 @@ MonoBehaviour:
   carInvPage: {fileID: 1173862881}
   interatePage: {fileID: 304529584}
   cam: {fileID: 1931838915}
+  playerLock: {fileID: 135249999}
+  slotZ: {fileID: 1013928909}
+  carLoadMan: {fileID: 135250001}
+  lootTableName: test
 --- !u!1 &589737770
 GameObject:
   m_ObjectHideFlags: 0
@@ -9366,7 +9383,7 @@ GameObject:
   - component: {fileID: 596428952}
   - component: {fileID: 596428951}
   m_Layer: 5
-  m_Name: ItemHydroValue
+  m_Name: CarItemHydroValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10682,7 +10699,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 884999764}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10706,8 +10723,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: InvInteractable, Assembly-CSharp
+        - m_Target: {fileID: 884999765}
+          m_TargetAssemblyTypeName: CarInvInteractable, Assembly-CSharp
           m_MethodName: chanceHighlighted
           m_Mode: 2
           m_Arguments:
@@ -10722,8 +10739,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: InvInteractable, Assembly-CSharp
+        - m_Target: {fileID: 884999765}
+          m_TargetAssemblyTypeName: CarInvInteractable, Assembly-CSharp
           m_MethodName: chanceCurrent
           m_Mode: 2
           m_Arguments:
@@ -10738,12 +10755,12 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: InvInteractable, Assembly-CSharp
+        - m_Target: {fileID: 884999765}
+          m_TargetAssemblyTypeName: CarInvInteractable, Assembly-CSharp
           m_MethodName: chanceHighlighted
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgument: {fileID: 1013928909}
             m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
             m_IntArgument: 0
             m_FloatArgument: 0
@@ -12755,7 +12772,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 884999764}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12779,8 +12796,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: InvInteractable, Assembly-CSharp
+        - m_Target: {fileID: 884999765}
+          m_TargetAssemblyTypeName: CarInvInteractable, Assembly-CSharp
           m_MethodName: chanceHighlighted
           m_Mode: 2
           m_Arguments:
@@ -12795,8 +12812,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: InvInteractable, Assembly-CSharp
+        - m_Target: {fileID: 884999765}
+          m_TargetAssemblyTypeName: CarInvInteractable, Assembly-CSharp
           m_MethodName: chanceCurrent
           m_Mode: 2
           m_Arguments:
@@ -12811,12 +12828,12 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: InvInteractable, Assembly-CSharp
+        - m_Target: {fileID: 884999765}
+          m_TargetAssemblyTypeName: CarInvInteractable, Assembly-CSharp
           m_MethodName: chanceHighlighted
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgument: {fileID: 1013928909}
             m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
             m_IntArgument: 0
             m_FloatArgument: 0
@@ -13809,7 +13826,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 884999764}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13833,8 +13850,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: InvInteractable, Assembly-CSharp
+        - m_Target: {fileID: 884999765}
+          m_TargetAssemblyTypeName: CarInvInteractable, Assembly-CSharp
           m_MethodName: chanceHighlighted
           m_Mode: 2
           m_Arguments:
@@ -13849,8 +13866,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: InvInteractable, Assembly-CSharp
+        - m_Target: {fileID: 884999765}
+          m_TargetAssemblyTypeName: CarInvInteractable, Assembly-CSharp
           m_MethodName: chanceCurrent
           m_Mode: 2
           m_Arguments:
@@ -13865,12 +13882,12 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: InvInteractable, Assembly-CSharp
+        - m_Target: {fileID: 884999765}
+          m_TargetAssemblyTypeName: CarInvInteractable, Assembly-CSharp
           m_MethodName: chanceHighlighted
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgument: {fileID: 1013928909}
             m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
             m_IntArgument: 0
             m_FloatArgument: 0
@@ -15293,7 +15310,7 @@ GameObject:
   - component: {fileID: 884999764}
   - component: {fileID: 884999765}
   m_Layer: 5
-  m_Name: InvList
+  m_Name: CarInvList
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15311,6 +15328,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1013928907}
   - {fileID: 722357676}
   - {fileID: 773591530}
   - {fileID: 1684760521}
@@ -15336,6 +15354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ce58c26e8878504680c54fda50ef4c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slotZ: {fileID: 1013928909}
   invMan: {fileID: 578133183}
   invLore: {fileID: 1552079895}
   itemName: {fileID: 1214404117}
@@ -17565,6 +17584,169 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1012560075}
+  m_CullTransparentMesh: 1
+--- !u!1 &1013928906
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1013928907}
+  - component: {fileID: 1013928910}
+  - component: {fileID: 1013928909}
+  - component: {fileID: 1013928908}
+  m_Layer: 5
+  m_Name: Slot-0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1013928907
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013928906}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 884999764}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1013928908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013928906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &1013928909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013928906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: '
+
+'
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1013928910
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013928906}
   m_CullTransparentMesh: 1
 --- !u!1 &1019482543
 GameObject:
@@ -20018,7 +20200,7 @@ GameObject:
   - component: {fileID: 1214404118}
   - component: {fileID: 1214404117}
   m_Layer: 5
-  m_Name: ItemName
+  m_Name: CarItemName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28373,7 +28555,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 884999764}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -28397,8 +28579,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: InvInteractable, Assembly-CSharp
+        - m_Target: {fileID: 884999765}
+          m_TargetAssemblyTypeName: CarInvInteractable, Assembly-CSharp
           m_MethodName: chanceHighlighted
           m_Mode: 2
           m_Arguments:
@@ -28413,8 +28595,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: InvInteractable, Assembly-CSharp
+        - m_Target: {fileID: 884999765}
+          m_TargetAssemblyTypeName: CarInvInteractable, Assembly-CSharp
           m_MethodName: chanceCurrent
           m_Mode: 2
           m_Arguments:
@@ -28429,12 +28611,12 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: InvInteractable, Assembly-CSharp
+        - m_Target: {fileID: 884999765}
+          m_TargetAssemblyTypeName: CarInvInteractable, Assembly-CSharp
           m_MethodName: chanceHighlighted
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgument: {fileID: 1013928909}
             m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
             m_IntArgument: 0
             m_FloatArgument: 0
@@ -32683,7 +32865,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 884999764}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -32707,8 +32889,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: InvInteractable, Assembly-CSharp
+        - m_Target: {fileID: 884999765}
+          m_TargetAssemblyTypeName: CarInvInteractable, Assembly-CSharp
           m_MethodName: chanceHighlighted
           m_Mode: 2
           m_Arguments:
@@ -32723,8 +32905,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: InvInteractable, Assembly-CSharp
+        - m_Target: {fileID: 884999765}
+          m_TargetAssemblyTypeName: CarInvInteractable, Assembly-CSharp
           m_MethodName: chanceCurrent
           m_Mode: 2
           m_Arguments:
@@ -32739,12 +32921,12 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: InvInteractable, Assembly-CSharp
+        - m_Target: {fileID: 884999765}
+          m_TargetAssemblyTypeName: CarInvInteractable, Assembly-CSharp
           m_MethodName: chanceHighlighted
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgument: {fileID: 1013928909}
             m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
             m_IntArgument: 0
             m_FloatArgument: 0
@@ -33047,7 +33229,7 @@ GameObject:
   - component: {fileID: 1948945724}
   - component: {fileID: 1948945723}
   m_Layer: 5
-  m_Name: ItemConsume
+  m_Name: CarItemConsume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35194,7 +35376,7 @@ GameObject:
   - component: {fileID: 2130414044}
   - component: {fileID: 2130414043}
   m_Layer: 5
-  m_Name: ItemHeathValue
+  m_Name: CarItemHeathValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
