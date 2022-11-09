@@ -93,8 +93,16 @@ public class CarInvManager : MonoBehaviour
             LootTable loot = ItemDB.getLootTable(this.lootTableName);
             loot.setSeed(hash.GetHashCode());
 
+            int numItem = loot.getRandomItemNum();
+            Debug.Log(numItem);
             for (int i = 0; i < items.Length; i++) {
-                items[i] = loot.getRandomItem();
+                if (i < numItem) {
+                    Debug.Log("Spawning item...");
+                    items[i] = loot.getRandomItem();
+                } else {
+                    Debug.Log("Spawning null...");
+                    items[i] = null;
+                }
             }
 
             updateAllInv();

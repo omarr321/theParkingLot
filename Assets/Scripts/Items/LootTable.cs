@@ -62,4 +62,9 @@ public class LootTable
 
         return this.items[Random.Range(0, items.Length)];
     }
+
+    public int getRandomItemNum()
+    {
+        return Random.Range(2, 6);
+    }
 }
