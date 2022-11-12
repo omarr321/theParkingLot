@@ -55,7 +55,6 @@ public class CarInvInteractable : MonoBehaviour
         private TMPro.TextMeshProUGUI lastHighlightedCell;
         */
 
-        
     }
 
     // Chancges the highlighted text to the next text and changes the color accordingly
@@ -163,6 +162,7 @@ public class CarInvInteractable : MonoBehaviour
 
     public void deleteItem()
     {
+        Debug.Log("Deleting Item...");
         invMan.removeItem(int.Parse(selectedCell.name.Split("-")[1])-1);
         this.chanceCurrent(slotZ);
         this.reset();

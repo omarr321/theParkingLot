@@ -99,6 +99,7 @@ public class CarInvManager : MonoBehaviour
                 if (i < numItem) {
                     Debug.Log("Spawning item...");
                     items[i] = loot.getRandomItem();
+                    this.currentEnd++;
                 } else {
                     Debug.Log("Spawning null...");
                     items[i] = null;
@@ -143,6 +144,7 @@ public class CarInvManager : MonoBehaviour
     // @Parms int index : The index to remove items from
     // @Return bool : Returns true is it was successful
     public bool removeItem(int index) {
+        Debug.Log("Removing item at index " + index + "...");
         if (index > currentEnd) {
             return false;
         }
@@ -173,6 +175,7 @@ public class CarInvManager : MonoBehaviour
     // @Parms int index : Slot to shift up
     // @Return bool : Returns true is it was successful
     private bool shiftSlotUp(int index) {
+        Debug.Log("Shifting slot " + index + " up...");
         if (index < numSlots-1) {
             items[index] = items[index+1];
             items[index+1] = null;
