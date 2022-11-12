@@ -31,9 +31,10 @@ public class CarInvInteractable : MonoBehaviour
     public TMPro.TextMeshProUGUI itemHealthValue;
     public TMPro.TextMeshProUGUI itemHungerValue;
     public TMPro.TextMeshProUGUI itemHydroValue;
-    public UnityEngine.UI.Button consumeButton;
     public UnityEngine.UI.Button loreButton;
     public UnityEngine.UI.Button deleteButton;
+    public UnityEngine.UI.Button takeButton;
+    public InvManager playerInv;
     // Start set default values and set slot zero
     void Start()
     {
@@ -43,6 +44,18 @@ public class CarInvInteractable : MonoBehaviour
         highlightedCell = null;
         lastHighlightedCell = null;
         //slotZ = GameObject.Find("Slot-0").GetComponent<TMPro.TextMeshProUGUI>();
+    }
+
+    public void reset()
+    {
+        /*
+        private TMPro.TextMeshProUGUI selectedCell;
+        private TMPro.TextMeshProUGUI lastSelectedCell;
+        private TMPro.TextMeshProUGUI highlightedCell;
+        private TMPro.TextMeshProUGUI lastHighlightedCell;
+        */
+
+        
     }
 
     // Chancges the highlighted text to the next text and changes the color accordingly
@@ -94,17 +107,16 @@ public class CarInvInteractable : MonoBehaviour
     // Updates the buttons so it only shows buttons that can be used on the item
     // @Parms Item item : The item information to use
     private void updateButtons(Item item) {
-        consumeButton.gameObject.SetActive(false);
+        takeButton.gameObject.SetActive(false);
         loreButton.gameObject.SetActive(false);
         deleteButton.gameObject.SetActive(false);
         if (item == null) {
             return;
         }
         deleteButton.gameObject.SetActive(true);
+        takeButton.gameObject.SetActive(true);
         if (item.GetType() == typeof(Lore)) {
             loreButton.gameObject.SetActive(true);
-        } else if (item.GetType() == typeof(Eatable)){
-            consumeButton.gameObject.SetActive(true);
         }
     }
 
@@ -138,15 +150,6 @@ public class CarInvInteractable : MonoBehaviour
             }
     }
 
-    // Consumes the Item that is currently selected
-    public void consumeItem()
-    {
-        Eatable temp = (Eatable)this.selectedItem;
-        temp.consume();
-        invMan.removeItem(int.Parse(selectedCell.name.Split("-")[1])-1);
-        this.chanceCurrent(slotZ);
-    }
-
     // Open the Lore Window with the current item
     public void openLore()
     {
@@ -154,11 +157,22 @@ public class CarInvInteractable : MonoBehaviour
         invLore.gameObject.SetActive(true);
         StartCoroutine(invLore.setText(temp.getName(), temp.getLore()));
         this.chanceCurrent(slotZ);
+        this.reset();
+
     }
 
     public void deleteItem()
     {
         invMan.removeItem(int.Parse(selectedCell.name.Split("-")[1])-1);
         this.chanceCurrent(slotZ);
+        this.reset();
+    }
+
+    public void takeItem()
+    {
+        playerInv.addItem(invMan.getItem(int.Parse(selectedCell.name.Split("-")[1])-1));
+        invMan.removeItem(int.Parse(selectedCell.name.Split("-")[1])-1);
+        this.chanceCurrent(slotZ);
+        this.reset();
     }
 }
