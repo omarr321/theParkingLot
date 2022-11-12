@@ -10,6 +10,10 @@ public class pauseMenuController : MonoBehaviour
     public GameObject pauseMain;
     public GameObject saveView;
 
+    public PlayerManager playerMan;
+    public InvManager invManager;
+    private WorldManager worldMan;
+
     // public SettingManager settingMan;
     // public WorldManager loadMan;
 
@@ -47,6 +51,10 @@ public class pauseMenuController : MonoBehaviour
 
     public void backToMainMenu()
     {
+        worldMan = GameObject.Find("LoadSetting").GetComponent<WorldManager>();
+        playerMan.savePlayer();
+        invManager.saveInv();
+        worldMan.savePlayerValToFile();
         SceneManager.LoadScene(0);
     }
 }
