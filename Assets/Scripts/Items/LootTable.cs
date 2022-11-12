@@ -62,4 +62,22 @@ public class LootTable
 
         return this.items[Random.Range(0, items.Length)];
     }
+
+    public int getRandomItemNum()
+    {
+        int val = Random.Range(0, 100);
+        if (val < 60) {
+            return 1;
+        }
+        if (val < 90) {
+            return 2;
+        }
+        if (val < 95) {
+            return 3;
+        }
+        if (val < 98) {
+            return 4;
+        }
+        return 5;
+    }
 }

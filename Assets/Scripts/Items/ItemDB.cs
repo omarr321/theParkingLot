@@ -131,8 +131,11 @@ public static class ItemDB
 
     private static void initLootTables() {
         LootTable temp = new LootTable();
-        temp.addItem(getItemInit("waterBottle"), .50f);
-        temp.addItem(getItemInit("ink"), .50f);
+        temp.addItem(getItemInit("waterBottle"), .20f);
+        temp.addItem(getItemInit("ink"), .20f);
+        temp.addItem(getItemInit("notebook"), .20f);
+        temp.addItem(getItemInit("paper"), .20f);
+        temp.addItem(getItemInit("cerealBar"), .20f);
         addLootTables("test", temp);
     }
 

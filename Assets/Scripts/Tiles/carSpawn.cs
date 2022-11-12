@@ -23,6 +23,10 @@ public class carSpawn : MonoBehaviour
 
         if (Random.Range(0.0f,100.0f) <= spawnChance){
             GameObject carTemp = Instantiate(this.carList[Random.Range(0, this.carList.Length)]);
+            carTemp.tag = "Car";
+            foreach (Transform t in carTemp.transform) {
+                t.gameObject.tag = "Car";
+            }
             carTemp.transform.localScale = new Vector3(0.70f, 0.70f, 0.70f);
             carTemp.transform.position = this.gameObject.transform.position;
             carTemp.transform.rotation = this.gameObject.transform.rotation;
@@ -30,7 +34,7 @@ public class carSpawn : MonoBehaviour
                 carTemp.transform.Rotate(new Vector3(0, 180, 0));
             }
             carTemp.transform.Rotate(new Vector3(0, Random.Range(-15.0f, 15.0f), 0));
-            carTemp.transform.name = "(" + x + "," + y + ")-" + this.gameObject.transform.name + "-Car";
+            carTemp.transform.name = "(" + x + "," + y + ") " + this.gameObject.transform.name + "-Car";
             carTemp.transform.localScale += new Vector3(.75f, .75f, .75f);
         }
         Destroy(this.gameObject);
