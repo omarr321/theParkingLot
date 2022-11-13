@@ -15,6 +15,8 @@ public class LoadPage : MonoBehaviour
     public MenuViewController menuView;
     public Button loadButt;
 
+    public GameObject confirmView;
+
     public Button deleteButt;
 
     private Color grey = new Color(0.6f, 0.6f, 0.6f, 1.0f);
@@ -29,6 +31,7 @@ public class LoadPage : MonoBehaviour
 
     private void refreshList()
     {
+        this.confirmView.SetActive(false);
         loadButt.enabled = false;
         loadButt.image.color = this.grey;
         deleteButt.enabled = false;
@@ -66,6 +69,16 @@ public class LoadPage : MonoBehaviour
     {
         worldMan.deleteWorld();
         this.refreshList();
+    }
+
+    public void openConfirmView()
+    {
+        this.confirmView.SetActive(true);
+    }
+
+    public void closeConfirmView()
+    {
+        this.confirmView.SetActive(false);
     }
 
     private void onWorldChanged(int arg0)
