@@ -29,6 +29,11 @@ public class InvManager : MonoBehaviour
         for(int i = 0; i < 20; i++) {
             tempInv.TryGetValue("inv" + i, out tempItem);
             items[i] = tempItem;
+            Item currItem = null;
+            if (tempItem != null) {
+                currItem = ItemDB.getItem(tempItem.getSaveName());
+            }
+            items[i] = currItem;
         }
 
         updateAllInv();
