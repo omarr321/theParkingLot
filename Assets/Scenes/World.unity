@@ -11845,6 +11845,8 @@ MonoBehaviour:
   settingView: {fileID: 1550426851}
   pauseMain: {fileID: 284134478}
   saveView: {fileID: 888631464}
+  playerMan: {fileID: 578133180}
+  invManager: {fileID: 578133181}
 --- !u!1 &705327455
 GameObject:
   m_ObjectHideFlags: 0
