@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.IO;
 
 /* This class is the Inventory Manager. It keeps track of the players inventory
  * @Author Omar Radwan
@@ -21,6 +23,8 @@ public class CarInvManager : MonoBehaviour
     public PlayerControlLock playerLock;
     public TMPro.TextMeshProUGUI slotZ;
     public CarLoadManager carLoadMan;
+    private string carNameTemp;
+    private bool carChanged = false;
 
     public string lootTableName;
 
@@ -56,7 +60,10 @@ public class CarInvManager : MonoBehaviour
                         Cursor.lockState = CursorLockMode.Confined;
                         Cursor.visible = true;
                         interatePage.SetActive(true);
-                        updatePage(hit.transform.gameObject.name);
+                        carNameTemp = hit.transform.gameObject.name;
+                        carChanged = false;
+                        currentEnd = 0;
+                        updatePage(carNameTemp);
                     }
                 }
             } else {
@@ -73,12 +80,58 @@ public class CarInvManager : MonoBehaviour
             carInvPage.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            if(carChanged) {
+                this.saveCar(carNameTemp);
+                carChanged = false;
+            }
         }
+    }
+
+    private void saveCar(string carName) {
+        //Debug.Log(Path.Combine(this.folderPath, carName.Split(" ")[0], carName.Split(" ")[1] + ".dat"));
+        if(!Directory.Exists(Path.Combine(worldMan.getWorldPath(), carName.Split(" ")[0]))) {
+            Directory.CreateDirectory(Path.Combine(worldMan.getWorldPath(), carName.Split(" ")[0]));
+        }
+        FileStream carSave = File.Create(Path.Combine(worldMan.getWorldPath(), carName.Split(" ")[0], carName.Split(" ")[1] + ".dat"));
+        carSave.Close();
+        
+        StreamWriter writer = new StreamWriter(Path.Combine(worldMan.getWorldPath(), carName.Split(" ")[0], carName.Split(" ")[1] + ".dat"));
+        for(int i = 0; i < items.Length; i++) {
+            string temp;
+            if (items[i] != null) {
+                temp = "inv-" + i + ":" + items[i].getSaveName();
+            } else {
+                temp = "inv-" + i + ":none";
+            }
+            writer.WriteLine(temp);
+        }
+        writer.WriteLine("currEnd:" + this.currentEnd);
+        writer.Close();
     }
 
     private void updatePage(string carName) {
         if (carLoadMan.checkCarSave(carName)) {
-
+            StreamReader carData = new StreamReader(Path.Combine(worldMan.getWorldPath(), carName.Split(" ")[0], carName.Split(" ")[1] + ".dat"));
+            while(!carData.EndOfStream) {
+                string[] data = carData.ReadLine().Split(":");
+                switch(data[0]) {
+                    case "inv-0":
+                    case "inv-1":
+                    case "inv-2":
+                    case "inv-3":
+                    case "inv-4":
+                        if (data[1] == "none") {
+                            items[int.Parse(data[0].Split("-")[1])] = null;
+                        } else {
+                            items[int.Parse(data[0].Split("-")[1])] = ItemDB.getItem(data[1]);
+                        }
+                        break;
+                    case "currEnd":
+                        this.currentEnd = int.Parse(data[1]);
+                        break;
+                }
+            }
+            carData.Close();
         } else {
             string[] temp = carName.Split(" ");
             
@@ -144,7 +197,7 @@ public class CarInvManager : MonoBehaviour
     // @Parms int index : The index to remove items from
     // @Return bool : Returns true is it was successful
     public bool removeItem(int index) {
-        Debug.Log("Removing item at index " + index + "...");
+        //Debug.Log("Removing item at index " + index + "...");
         if (index > currentEnd) {
             return false;
         }
@@ -155,6 +208,7 @@ public class CarInvManager : MonoBehaviour
         }
         currentEnd--;
         updateAllInv();
+        carChanged = true;
         return true;
     }
 
@@ -168,6 +222,7 @@ public class CarInvManager : MonoBehaviour
         items[currentEnd-1] = null;
         updateInvSlot(currentEnd-1);
         currentEnd--;
+        carChanged = true;
         return true;
     }
 
