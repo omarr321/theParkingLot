@@ -157,6 +157,7 @@ public class SettingManager : MonoBehaviour
     private const KeyCode defaultInteractKey = KeyCode.E;
     private const bool defaultInvertY = false;
     private const int defaultCamSense = 250;
+    private const int defaultAutoSave = 0;
 
     // User Set Values
     private KeyCode forward;
@@ -168,6 +169,7 @@ public class SettingManager : MonoBehaviour
     private KeyCode interactKey;
     private bool invertY;
     private int camSense;
+    private int autoSave;
 
 
     public static SettingManager Instance;
@@ -224,6 +226,11 @@ public class SettingManager : MonoBehaviour
     {
         return defaultCamSense;
     }
+
+    public int getDefaultAutoSave()
+    {
+        return defaultAutoSave;
+    }
     #endregion
 
     #region PlayerGetters
@@ -270,6 +277,11 @@ public class SettingManager : MonoBehaviour
     public int getCamSense()
     {
         return camSense;
+    }
+
+    public int getAutoSave()
+    {
+        return autoSave;
     }
     #endregion
 
@@ -318,6 +330,11 @@ public class SettingManager : MonoBehaviour
     {
         camSense = val;
     }
+
+    public void setAutoSave(int val)
+    {
+        autoSave = val;
+    }
     #endregion
 
     #region publicMethods
@@ -338,6 +355,7 @@ public class SettingManager : MonoBehaviour
             saveData.Add("interactKey", this.getDefaultInteract().ToString().ToLower());
             saveData.Add("invertY", this.getDefaultInvertY().ToString().ToLower());
             saveData.Add("camSense", this.getDefaultCamSense().ToString().ToLower());
+            saveData.Add("autoSave", this.getDefaultAutoSave().ToString().ToLower());
 
             StreamWriter writer = new StreamWriter(Path.Combine(Application.persistentDataPath, "playerPref.dat"));
             foreach(KeyValuePair<string, object> data in saveData){
@@ -391,6 +409,9 @@ public class SettingManager : MonoBehaviour
                 case "camSense":
                     this.setCamSense(int.Parse(data[1]));
                     break;
+                case "autoSave":
+                    this.setAutoSave(int.Parse(data[1]));
+                    break;
             }
         }
         reader.Close();
@@ -407,6 +428,7 @@ public class SettingManager : MonoBehaviour
         saveData.Add("interactKey", this.getInteract().ToString().ToLower());
         saveData.Add("invertY", this.getInvertY().ToString().ToLower());
         saveData.Add("camSense", this.getCamSense().ToString().ToLower());
+        saveData.Add("autoSave", this.getAutoSave().ToString().ToLower());
 
         StreamWriter writer = new StreamWriter(Path.Combine(Application.persistentDataPath, "playerPref.dat"));
         foreach(KeyValuePair<string, object> data in saveData){
