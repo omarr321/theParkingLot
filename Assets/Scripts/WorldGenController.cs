@@ -29,6 +29,7 @@ public class WorldGenController : MonoBehaviour
 
     public GameObject loadingScreen;
     public PlayerManager playerMan;
+    private SettingManager settingMan;
     public AutoSavingScript autoSave;
 
     private WorldManager worldMan;
@@ -37,6 +38,7 @@ public class WorldGenController : MonoBehaviour
     void Start()
     {
         worldMan = GameObject.Find("LoadSetting").GetComponent<WorldManager>();
+        settingMan = GameObject.Find("SettingPersonal").GetComponent<SettingManager>();
 
         loadingScreen.SetActive(true);
         playerLock.lockPlayer(this);
@@ -80,8 +82,9 @@ public class WorldGenController : MonoBehaviour
         playerMan.addHealth(100);
         playerMan.addHydration(100);
         playerMan.addSaturation(100);
-        loadingScreen.SetActive(false);
+        autoSave.setSaveInterval(settingMan.getAutoSave());
         autoSave.startSaveLoop();
+        loadingScreen.SetActive(false);
     }
 
     // Changes the current player cord

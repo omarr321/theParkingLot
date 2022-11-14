@@ -16,6 +16,7 @@ public class SettingPage : MonoBehaviour
     public TMPro.TMP_Dropdown interactKey;
     public Toggle invertY;
     public Slider camSense;
+    public TMPro.TMP_Dropdown autoSaveTime;
     public SettingManager settingMan;
     public MenuViewController menuView;
 
@@ -64,6 +65,59 @@ public class SettingPage : MonoBehaviour
 
         value = settingMan.getCamSense();
         camSense.value = value;
+        
+        value = this.getAutoSaveIndex(settingMan.getAutoSave());
+        this.autoSaveTime.value = value;
+    }
+
+    private int getAutoSaveIndex(int autoSavetime) {
+        switch(autoSavetime) 
+        {
+            case 0:
+                return 0;
+            case 60:
+                return 1;
+            case 180:
+                return 2;
+            case 300:
+                return 3;
+            case 600:
+                return 4;
+            case 900:
+                return 5;
+            case 1800:
+                return 6;
+            case 2700:
+                return 7;
+            case 3600:
+                return 8;
+        }
+        return -1;
+    }
+
+    private int getAutoSaveFromIndex(int index) {
+        switch(index) 
+        {
+            case 0:
+                return 0;
+            case 1:
+                return 60;
+            case 2:
+                return 180;
+            case 3:
+                return 300;
+            case 4:
+                return 600;
+            case 5:
+                return 900;
+            case 6:
+                return 1800;
+            case 7:
+                return 2700;
+            case 8:
+                return 3600;
+        }
+        return -1;
     }
 
     public void saveValToSettingMan()
@@ -77,6 +131,7 @@ public class SettingPage : MonoBehaviour
         settingMan.setInteract(settingMan.getKeycode(((char)(interactKey.value + 'A')).ToString().ToLower().ToCharArray()[0]));
         settingMan.setInvertY(invertY.isOn);
         settingMan.setCamSense((int)camSense.value);
+        settingMan.setAutoSave(this.getAutoSaveFromIndex(this.autoSaveTime.value));
         settingMan.savePlayerSetting();
     }
 
