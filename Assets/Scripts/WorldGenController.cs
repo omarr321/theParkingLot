@@ -29,6 +29,7 @@ public class WorldGenController : MonoBehaviour
 
     public GameObject loadingScreen;
     public PlayerManager playerMan;
+    public AutoSavingScript autoSave;
 
     private WorldManager worldMan;
 
@@ -80,6 +81,7 @@ public class WorldGenController : MonoBehaviour
         playerMan.addHydration(100);
         playerMan.addSaturation(100);
         loadingScreen.SetActive(false);
+        autoSave.startSaveLoop();
     }
 
     // Changes the current player cord
