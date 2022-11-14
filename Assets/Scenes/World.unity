@@ -1886,7 +1886,7 @@ GameObject:
   - component: {fileID: 84792843}
   - component: {fileID: 84792842}
   m_Layer: 0
-  m_Name: Template
+  m_Name: DropdownScroll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1933,7 +1933,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 32
   m_Viewport: {fileID: 1705594214}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 1447278714}
@@ -4508,7 +4508,7 @@ GameObject:
   - component: {fileID: 194947273}
   - component: {fileID: 194947272}
   m_Layer: 0
-  m_Name: Template
+  m_Name: DropdownScroll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4555,7 +4555,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 32
   m_Viewport: {fileID: 1201589315}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 900780741}
@@ -11771,7 +11771,7 @@ GameObject:
   - component: {fileID: 677186687}
   - component: {fileID: 677186686}
   m_Layer: 0
-  m_Name: Template
+  m_Name: DropdownScroll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11818,7 +11818,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 32
   m_Viewport: {fileID: 543403824}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 684538135}
@@ -13354,7 +13354,7 @@ GameObject:
   - component: {fileID: 720256053}
   - component: {fileID: 720256052}
   m_Layer: 0
-  m_Name: Template
+  m_Name: DropdownScroll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13401,7 +13401,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 32
   m_Viewport: {fileID: 1808272587}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 987877843}
@@ -13797,7 +13797,7 @@ GameObject:
   - component: {fileID: 731035418}
   - component: {fileID: 731035417}
   m_Layer: 0
-  m_Name: Template
+  m_Name: DropdownScroll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13844,7 +13844,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 32
   m_Viewport: {fileID: 139264222}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 1143036786}
@@ -21519,7 +21519,7 @@ GameObject:
   - component: {fileID: 1226978005}
   - component: {fileID: 1226978004}
   m_Layer: 0
-  m_Name: Template
+  m_Name: DropdownScroll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21566,7 +21566,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 32
   m_Viewport: {fileID: 158043809}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 1753312596}
@@ -21704,7 +21704,7 @@ GameObject:
   - component: {fileID: 1234506698}
   - component: {fileID: 1234506697}
   m_Layer: 0
-  m_Name: Template
+  m_Name: DropdownScroll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21751,7 +21751,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 32
   m_Viewport: {fileID: 1750767949}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 571342072}
@@ -23533,7 +23533,7 @@ GameObject:
   - component: {fileID: 1315704225}
   - component: {fileID: 1315704224}
   m_Layer: 0
-  m_Name: Template
+  m_Name: DropdownScroll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23580,7 +23580,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 32
   m_Viewport: {fileID: 160417101}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 142671286}
@@ -32289,7 +32289,7 @@ GameObject:
   - component: {fileID: 1776244608}
   - component: {fileID: 1776244607}
   m_Layer: 0
-  m_Name: Template
+  m_Name: DropdownScroll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32336,7 +32336,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 32
   m_Viewport: {fileID: 1038335484}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 1759001574}
