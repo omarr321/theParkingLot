@@ -144,6 +144,9 @@ public static class ItemDB
     }
 
     public static LootTable getLootTable(string name) {
+        if (!initDB) {
+            throw new System.Exception("Error: The ItemDB has not been initlized!");
+        }
         LootTable temp = null;
         lootTableDB.TryGetValue(name, out temp);
         return temp;
@@ -153,6 +156,9 @@ public static class ItemDB
     // @Parms RecipeInput rec : The recipe to check
     // @Return Item : Returns an item if the recipe is valid, null if otherwise
     public static Item getItemFromRecipe(RecipeInput rec) {
+        if (!initDB) {
+            throw new System.Exception("Error: The ItemDB has not been initlized!");
+        }
         foreach (Recipe item in recipes) {
             if (item.GetRecipeInput().CompareTo(rec) == 0) {
                 return item.getItemOut();
