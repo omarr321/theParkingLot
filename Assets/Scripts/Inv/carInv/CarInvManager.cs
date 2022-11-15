@@ -97,7 +97,7 @@ public class CarInvManager : MonoBehaviour
                     case "inv-2":
                     case "inv-3":
                     case "inv-4":
-                        if (currData.Value.ToString().Equals("none")) {
+                        if (currData.Value == null) {
                             items[int.Parse(currData.Key.Split("-")[1])] = null;
                         } else {
                             items[int.Parse(currData.Key.Split("-")[1])] = ItemDB.getItem(currData.Value.ToString());
