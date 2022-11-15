@@ -49,6 +49,7 @@ public class WorldGenController : MonoBehaviour
         playerMan.setEnabledSat(false);
         seed = worldMan.getSeed();
         Debug.Log("Seed: " + seed.ToString());
+        this.changeCord(worldMan.getCurrX(), worldMan.getCurrY());
         StartCoroutine(initStart());
     }
 

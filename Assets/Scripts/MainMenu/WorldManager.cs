@@ -22,6 +22,10 @@ public class WorldManager : MonoBehaviour
 
     private bool init = false;
 
+    private int currX = 0;
+
+    private int currY = 0;
+
     private string lastPlayed = "";
 
     // Set this gameObject to not be destory on scene load
@@ -48,6 +52,12 @@ public class WorldManager : MonoBehaviour
         this.folderPath = Path.Combine(Application.persistentDataPath, "saves", this.worldName);
     }
 
+    public void setPlayerCord(int x, int y)
+    {
+        this.currX = x;
+        this.currY = y;
+    }
+
     public void setPlayerVal(Dictionary<string, object> playerVal)
     {
         this.playerVal = playerVal;
@@ -65,6 +75,8 @@ public class WorldManager : MonoBehaviour
         foreach(KeyValuePair<string, object> data in this.playerVal){
                 writer.WriteLine(data.Key + ":" + data.Value.ToString());
         }
+        writer.WriteLine("currX:" + this.currX);
+        writer.WriteLine("currY:" + this.currY);
         foreach(KeyValuePair<string, Item> data in this.playerInv){
             //Debug.Log(data.Key + ":" + data.Value);
             if (data.Value == null) {
@@ -135,6 +147,12 @@ public class WorldManager : MonoBehaviour
                 case "timeStamp":
                     this.lastPlayed = data[1].ToString() + ":" + data[2].ToString() + ":" + data[3].ToString();
                     break;
+                case "currX":
+                    this.currX = int.Parse(data[1].ToString());
+                    break;
+                case "currY":
+                    this.currY = int.Parse(data[1].ToString());
+                    break;
             }
         }
         reader.Close();
@@ -159,6 +177,14 @@ public class WorldManager : MonoBehaviour
     public string getLastPlayed()
     {
         return this.lastPlayed;
+    }
+
+    public int getCurrX() {
+        return this.currX;
+    }
+
+    public int getCurrY() {
+        return this.currY;
     }
 
     public Dictionary<string, object> getPlayerVal()

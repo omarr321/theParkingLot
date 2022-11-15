@@ -21,6 +21,8 @@ public class clearTile : MonoBehaviour
         this.xCord = x;
         this.yCord = y;
 
+        Debug.Log("Clearing cars from (" + this.xCord + ", " + this.yCord + ")");
+
         for (int i = 0; i < carNum; i++) {
             GameObject temp = GameObject.Find("(" + xCord + "," + yCord + ")-" + i + "-Car");
             if (temp != null) {

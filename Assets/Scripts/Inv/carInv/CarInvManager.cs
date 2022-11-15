@@ -81,57 +81,33 @@ public class CarInvManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             if(carChanged) {
-                this.saveCar(carNameTemp);
+                carLoadMan.saveCar(carNameTemp, this.worldMan, this.items, this.currentEnd);
                 carChanged = false;
             }
         }
     }
 
-    private void saveCar(string carName) {
-        //Debug.Log(Path.Combine(this.folderPath, carName.Split(" ")[0], carName.Split(" ")[1] + ".dat"));
-        if(!Directory.Exists(Path.Combine(worldMan.getWorldPath(), carName.Split(" ")[0]))) {
-            Directory.CreateDirectory(Path.Combine(worldMan.getWorldPath(), carName.Split(" ")[0]));
-        }
-        FileStream carSave = File.Create(Path.Combine(worldMan.getWorldPath(), carName.Split(" ")[0], carName.Split(" ")[1] + ".dat"));
-        carSave.Close();
-        
-        StreamWriter writer = new StreamWriter(Path.Combine(worldMan.getWorldPath(), carName.Split(" ")[0], carName.Split(" ")[1] + ".dat"));
-        for(int i = 0; i < items.Length; i++) {
-            string temp;
-            if (items[i] != null) {
-                temp = "inv-" + i + ":" + items[i].getSaveName();
-            } else {
-                temp = "inv-" + i + ":none";
-            }
-            writer.WriteLine(temp);
-        }
-        writer.WriteLine("currEnd:" + this.currentEnd);
-        writer.Close();
-    }
-
     private void updatePage(string carName) {
         if (carLoadMan.checkCarSave(carName)) {
-            StreamReader carData = new StreamReader(Path.Combine(worldMan.getWorldPath(), carName.Split(" ")[0], carName.Split(" ")[1] + ".dat"));
-            while(!carData.EndOfStream) {
-                string[] data = carData.ReadLine().Split(":");
-                switch(data[0]) {
+            Dictionary<string, object> data = this.carLoadMan.loadCar(carName, this.worldMan);
+            foreach(KeyValuePair<string, object> currData in data) {
+                switch(currData.Key) {
                     case "inv-0":
                     case "inv-1":
                     case "inv-2":
                     case "inv-3":
                     case "inv-4":
-                        if (data[1] == "none") {
-                            items[int.Parse(data[0].Split("-")[1])] = null;
+                        if (currData.Value == null) {
+                            items[int.Parse(currData.Key.Split("-")[1])] = null;
                         } else {
-                            items[int.Parse(data[0].Split("-")[1])] = ItemDB.getItem(data[1]);
+                            items[int.Parse(currData.Key.Split("-")[1])] = ItemDB.getItem(currData.Value.ToString());
                         }
                         break;
                     case "currEnd":
-                        this.currentEnd = int.Parse(data[1]);
+                        this.currentEnd = int.Parse(currData.Value.ToString());
                         break;
                 }
             }
-            carData.Close();
         } else {
             string[] temp = carName.Split(" ");
             
