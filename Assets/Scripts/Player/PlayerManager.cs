@@ -25,6 +25,7 @@ public class PlayerManager : MonoBehaviour
     public InvInteractable invInter;
     public TMPro.TextMeshProUGUI slot0;
     public PlayerControlLock playerLock;
+    public GameObject gameController;
 
     private bool healthEnabled = true;
     private bool satEnabled = true;
@@ -257,6 +258,12 @@ public class PlayerManager : MonoBehaviour
         playerVal.Add("playerThirst", this.Hydration);
 
         worldMan.setPlayerVal(playerVal);
+
+        float tileRadius = gameController.GetComponent<WorldGenController>().tileRadius;
+
+        float playerX = Mathf.Round(transform.position.x  / tileRadius);
+        float playerY = Mathf.Round(transform.position.z  / tileRadius);
+        worldMan.setPlayerCord(int.Parse(playerX.ToString()), int.Parse(playerY.ToString()));
     }
 
     // Updates the GUI to the current Health, Hunger, and Thirst values

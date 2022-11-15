@@ -9689,6 +9689,7 @@ MonoBehaviour:
   invInter: {fileID: 1379052491}
   slot0: {fileID: 1988652899}
   playerLock: {fileID: 135249999}
+  gameController: {fileID: 135249995}
 --- !u!114 &578133181
 MonoBehaviour:
   m_ObjectHideFlags: 0
