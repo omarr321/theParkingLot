@@ -9,6 +9,11 @@ public class createWorldPage : MonoBehaviour
     public GameObject mainMenu;
     public WorldManager worldMan;
     public TMPro.TMP_InputField input;
+    public GameObject ErrorPanel;
+
+    void Start() {
+        ErrorPanel.SetActive(false);
+    }
 
     public void closeView() {
         mainMenu.SetActive(true);
@@ -17,6 +22,7 @@ public class createWorldPage : MonoBehaviour
 
     public void genWorld() {
         if (!checkWorldName()) {
+            ErrorPanel.SetActive(true);
             return;
         }
 
@@ -28,6 +34,10 @@ public class createWorldPage : MonoBehaviour
         worldMan.loadPlayerValFromFile();
         
         SceneManager.LoadScene(1);
+    }
+
+    public void closeError() {
+        ErrorPanel.SetActive(false);
     }
 
     private bool checkWorldName() {
