@@ -21,12 +21,12 @@ public class clearTile : MonoBehaviour
         this.xCord = x;
         this.yCord = y;
 
-        Debug.Log("Clearing cars from (" + this.xCord + ", " + this.yCord + ")");
+        //Debug.Log("Clearing cars from (" + this.xCord + ", " + this.yCord + ")");
 
-        for (int i = 0; i < carNum; i++) {
-            GameObject temp = GameObject.Find("(" + xCord + "," + yCord + ")-" + i + "-Car");
+        for (int i = 0; i < carNum+1; i++) {
+            GameObject temp = GameObject.Find("(" + xCord + "," + yCord + ") " + i + "-Car");
             if (temp != null) {
-                Debug.Log("Found Car: " + temp.transform.name);
+                //Debug.Log("Found Car: " + temp.transform.name);
                 Destroy(temp);
             }
             // This is so that it will atlest 1 car per frame and wait until the next frame to clear another car
