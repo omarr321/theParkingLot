@@ -136,11 +136,14 @@ public class WorldGenController : MonoBehaviour
                         yield return null;
                         car.genCar(x/tileRadius, y/tileRadius);
                     }
-                }
-                if (loadingScreen.activeInHierarchy) {
-                    loadingScreenSc.incurStep();
+                    if (loadingScreen.activeInHierarchy) {
+                        loadingScreenSc.incurStep();
+                    }
                 }
             }
+        }
+        if (loadingScreen.activeInHierarchy) {
+            loadingScreenSc.incurStep();
         }
         StartCoroutine(cullTiles());
     }
