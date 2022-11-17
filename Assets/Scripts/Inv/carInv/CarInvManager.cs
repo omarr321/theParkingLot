@@ -48,10 +48,10 @@ public class CarInvManager : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(cam.transform.position + new Vector3(0f, .5f,0f), cam.transform.forward, out hit, 3.0f)) {
             if (hit.transform.gameObject.tag == "Car") {
-                interatePage.SetActive(true);
-                interatePage.GetComponent<TMPro.TextMeshProUGUI>().text = "Press \'" + settingMan.getInteract().ToString() + "\' to interact";
-                if (Input.GetKeyDown(settingMan.getInteract())) {
-                    if(playerLock.noOwner()) {
+                if (playerLock.noOwner()) {
+                    interatePage.SetActive(true);
+                    interatePage.GetComponent<TMPro.TextMeshProUGUI>().text = "Press \'" + settingMan.getInteract().ToString() + "\' to interact";
+                    if (Input.GetKeyDown(settingMan.getInteract())) {
                         playerLock.lockPlayer(this);
                         playerLock.disableCam(this);
                         playerLock.disableMovement(this);
@@ -72,17 +72,19 @@ public class CarInvManager : MonoBehaviour
         } else {
             interatePage.SetActive(false);
         }
-        if (interatePage.activeInHierarchy && Input.GetKeyDown(KeyCode.Escape)) {
-            playerLock.enableCam(this);
-            playerLock.enableMovement(this);
-            playerLock.unlockPlayer(this);
-            interatePage.SetActive(false);
-            carInvPage.SetActive(false);
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            if(carChanged) {
-                carLoadMan.saveCar(carNameTemp, this.worldMan, this.items, this.currentEnd);
-                carChanged = false;
+        if (playerLock.noOwner() || playerLock.checkOwner(this)) {
+                if (interatePage.activeInHierarchy && Input.GetKeyDown(KeyCode.Escape)) {
+                playerLock.enableCam(this);
+                playerLock.enableMovement(this);
+                playerLock.unlockPlayer(this);
+                interatePage.SetActive(false);
+                carInvPage.SetActive(false);
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                if(carChanged) {
+                    carLoadMan.saveCar(carNameTemp, this.worldMan, this.items, this.currentEnd);
+                    carChanged = false;
+                }
             }
         }
     }
