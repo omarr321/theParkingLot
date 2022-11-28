@@ -10,12 +10,17 @@ using System;
 public class Recipe : IComparable<Recipe>
 {
     private RecipeInput recInput;
-    private Item output;
+    private Item[] output;
 
     // constructor
     // @Parms RecipeInput recIn : The recipe input
     // @Parms Item output : The item that is crafted from this recipe
-    public Recipe(RecipeInput recIn, Item output)
+    public Recipe(RecipeInput recIn, Item output) : this(recIn, new Item[]{output}) {}
+
+    // constructor
+    // @Parms RecipeInput recIn : The recipe input
+    // @Parms Item output : The item array that is crafted from this recipe
+    public Recipe(RecipeInput recIn, Item[] output)
     {
         this.recInput = recIn;
         this.output = output;
@@ -23,7 +28,7 @@ public class Recipe : IComparable<Recipe>
 
     // Get the item crafted from this recipe
     // @Return Item : The Item that is crafted
-    public Item getItemOut() {
+    public Item[] getItemOut() {
         return this.output;
     }
 
