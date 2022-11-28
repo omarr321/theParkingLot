@@ -147,11 +147,12 @@ public class CraftingController : MonoBehaviour
         Item mainItem = invMan.getItem(mainItemIndex);
         Item secondItem = invMan.getItem(secondItemIndex);
         RecipeInput recIn = new RecipeInput(mainItem, secondItem, null, null);
-        Item item = ItemDB.getItemFromRecipe(recIn);
+        Item[] items = ItemDB.getItemFromRecipe(recIn);
 
-        if (item == null) {
+        if(items == null) {
             craftedItem.text = "You did not craft anything!";
         } else {
+            string tempText = "You crafted: ";
             if (mainItemIndex > secondItemIndex) {
                 invMan.removeItem(mainItemIndex);
                 invMan.removeItem(secondItemIndex);
@@ -159,9 +160,13 @@ public class CraftingController : MonoBehaviour
                 invMan.removeItem(secondItemIndex);
                 invMan.removeItem(mainItemIndex);
             }
-            invMan.addItem(item);
+            foreach (Item item in items) {
+                invMan.addItem(item);
+                tempText = tempText + item.getName() + ", ";
+            }
+            tempText = tempText.Substring(0, tempText.Length-2);
             updateDisplay();
-            craftedItem.text = "You crafted: " + item.getName();
+            craftedItem.text = tempText;
         }
     }
 }

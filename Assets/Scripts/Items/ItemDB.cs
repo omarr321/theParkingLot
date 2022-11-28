@@ -115,7 +115,7 @@ public static class ItemDB
         addRecipe(recStress);
 
         RecipeInput makeNoteBook = new RecipeInput(getItemInit("paper"), getItemInit("ink"), null, null);
-        Recipe noteBook = new Recipe(makeNoteBook, getItemInit("notebook"));
+        Recipe noteBook = new Recipe(makeNoteBook, new Item[]{getItemInit("notebook"), getItemInit("paper")});
         addRecipe(noteBook);
 
         Array.Sort(recipes);
@@ -155,7 +155,7 @@ public static class ItemDB
     // Gets an item from a recipe
     // @Parms RecipeInput rec : The recipe to check
     // @Return Item : Returns an item if the recipe is valid, null if otherwise
-    public static Item getItemFromRecipe(RecipeInput rec) {
+    public static Item[] getItemFromRecipe(RecipeInput rec) {
         if (!initDB) {
             throw new System.Exception("Error: The ItemDB has not been initlized!");
         }
