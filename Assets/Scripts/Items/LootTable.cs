@@ -54,6 +54,10 @@ public class LootTable
         this.addItem(item, tempCount/1000.0f);
     }
 
+    public Item getItem(int index) {
+        return items[index];
+    }
+
     public Item getRandomItem()
     {
         if (!this.seedSet || this.currEnd < this.items.Length) {
@@ -79,5 +83,34 @@ public class LootTable
             return 4;
         }
         return 5;
+    }
+
+    public int getCurrEnd() {
+        return this.currEnd;
+    }
+
+    public Item[] getTableList() {
+        Item[] temp = new Item[currEnd];
+        for(int i = 0; i < currEnd; i++) {
+            temp[i] = items[i];
+        }
+        return temp;
+    }
+
+    public LootTable combineTables(LootTable[] lootTables) {
+        int total = 0;
+        foreach (LootTable table in lootTables) {
+            total = total + table.getCurrEnd();
+        }
+        if (total > 1000) {
+            throw new System.Exception("Error: The total items is greater than 1000!");
+        }
+        LootTable temp = new LootTable();
+        foreach (LootTable table in lootTables) {
+            for(int i = 0; i < table.getCurrEnd(); i++) {
+                temp.addItem(table.getItem(i), 0.001f);
+            }
+        }
+        return temp;
     }
 }
