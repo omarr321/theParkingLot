@@ -97,7 +97,7 @@ public class LootTable
         return temp;
     }
 
-    public LootTable combineTables(LootTable[] lootTables) {
+    public static LootTable combineTables(LootTable[] lootTables) {
         int total = 0;
         foreach (LootTable table in lootTables) {
             total = total + table.getCurrEnd();
