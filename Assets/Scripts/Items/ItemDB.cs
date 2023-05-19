@@ -135,7 +135,13 @@ public static class ItemDB
         temp.addItem(getItemInit("ink"), .20f);
         temp.addItem(getItemInit("notebook"), .20f);
         temp.addItem(getItemInit("paper"), .20f);
-        temp.addItem(getItemInit("cerealBar"), .20f);
+        //temp.addItem(getItemInit("cerealBar"), .20f);
+        Debug.Log(temp.toLog());
+        LootTable temp2 = new LootTable();
+        temp2.addItem(getItemInit("ink"), .20f);
+        Debug.Log(temp2.toLog());
+        LootTable temp3 = LootTable.combineTables(new LootTable[] {temp, temp2});
+        Debug.Log(temp3.toLog());
         addLootTables("test", temp);
     }
 

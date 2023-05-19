@@ -113,4 +113,25 @@ public class LootTable
         }
         return temp;
     }
+
+    public string toLog() {
+        string output = "";
+        Item currItem = null;
+        int currCount = 0;
+        for(int i = 0; i < 1000; i++) {
+            Item temp = this.getItem(i);
+            if (temp != null) {
+                if (temp.Equals(currItem)) {
+                    currCount++;
+                } else {
+                    output = output + " = " + currCount + ",\n";
+                    currCount = 1;
+                    currItem = temp;
+                    output = output + currItem.getName();
+                }
+            }
+        }
+        output = output + " = " + currCount;
+        return output;
+    }
 }
