@@ -147,7 +147,7 @@ public class CraftingController : MonoBehaviour
         Item mainItem = invMan.getItem(mainItemIndex);
         Item secondItem = invMan.getItem(secondItemIndex);
         RecipeInput recIn = new RecipeInput(mainItem, secondItem, null, null);
-        Item[] items = ItemDB.getItemFromRecipe(recIn);
+        Item[] items = Database.getItemFromRecipe(recIn);
 
         if(items == null) {
             craftedItem.text = "You did not craft anything!";

@@ -143,7 +143,7 @@ public class CommandControler : MonoBehaviour
                 // Checks second piece
                 switch(textP[1]){
                     case "add":
-                        invMan.addItem(ItemDB.getItem(textP[2]));
+                        invMan.addItem(Database.getItem(textP[2]));
                         break;
                     case "remove":
                         invMan.removeItem(int.Parse(textP[2]));

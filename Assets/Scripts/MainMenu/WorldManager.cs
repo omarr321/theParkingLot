@@ -37,7 +37,7 @@ public class WorldManager : MonoBehaviour
 
     void Start()
     {
-        ItemDB.initDatabase(this.GetComponent<PlayerManager>());
+        Database.initDatabase(this.GetComponent<PlayerManager>());
     }
 
     public void setSeed(int seed)
@@ -138,7 +138,7 @@ public class WorldManager : MonoBehaviour
                     {
                         this.playerInv.Add(data[0], null);
                     } else {
-                        this.playerInv.Add(data[0], ItemDB.getItem(data[1]));
+                        this.playerInv.Add(data[0], Database.getItem(data[1]));
                     }
                     break;
                 case "invIndex":

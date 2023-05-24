@@ -8,7 +8,7 @@ using System;
  * @Version 0.5.0
  * @Throws System.Exception
  */
-public static class ItemDB
+public static class Database
 {
     private static bool initDB = false;
     private static Dictionary<string, Item> itemDB = new Dictionary<string, Item>();

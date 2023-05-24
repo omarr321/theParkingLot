@@ -31,7 +31,7 @@ public class CarInvManager : MonoBehaviour
     // Init the Item Database so it can be used by any script and set default values
     void Start()
     {
-        ItemDB.reinitDatabase(this.GetComponent<PlayerManager>());
+        Database.reinitDatabase(this.GetComponent<PlayerManager>());
         worldMan = GameObject.Find("LoadSetting").GetComponent<WorldManager>();
         settingMan = GameObject.Find("SettingPersonal").GetComponent<SettingManager>();
         currentEnd = worldMan.getInvIndex();
@@ -102,7 +102,7 @@ public class CarInvManager : MonoBehaviour
                         if (currData.Value == null) {
                             items[int.Parse(currData.Key.Split("-")[1])] = null;
                         } else {
-                            items[int.Parse(currData.Key.Split("-")[1])] = ItemDB.getItem(currData.Value.ToString());
+                            items[int.Parse(currData.Key.Split("-")[1])] = Database.getItem(currData.Value.ToString());
                         }
                         break;
                     case "currEnd":
@@ -121,7 +121,7 @@ public class CarInvManager : MonoBehaviour
             int[] hashIn = new int[] {worldMan.getSeed(), tileCord[0], tileCord[1], carNum};
             var hash = Hash128.Compute(hashIn).ToString();
 
-            LootTable loot = ItemDB.getLootTable(this.lootTableName);
+            LootTable loot = Database.getLootTable(this.lootTableName);
             loot.setSeed(hash.GetHashCode());
 
             int numItem = loot.getRandomItemNum();
