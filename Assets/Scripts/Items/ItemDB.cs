@@ -62,11 +62,19 @@ public static class ItemDB
             Eatable canP = new Eatable("canPeach","Caned Peaches...", "Sweet and tasty", playerMan, 30.0f, 5.0f, 0.0f);
             addItem("canPeach", canP);
 
-
-
-            Eatable pills = new Eatable("pills", "Pills", "A bunch of random pills. Not sure what type but what do you have to lose?", playerMan, 0.0f, 0.0f, 25.0f);
+            // Medical
+            Eatable pills = new Eatable("pills", "Pills", "A bunch of random pills. Not sure what type but what do you have to lose?", playerMan, 0.0f, 0.0f, 20.0f);
             addItem("pills", pills);
-
+            Eatable bandage = new Eatable("bandage", "Bandage", "A Bandage to help you heal wounds.", playerMan, 0.0f, 0.0f, 5.0f);
+            addItem("bandage", bandage);
+            Eatable gaze = new Eatable("gaze", "Gaze", "A gaze that can heal heavy duty wounds.", playerMan, 0.0f, 0.0f, 10.0f);
+            addItem("gaze", gaze);
+            Eatable basicMedKit = new Eatable("medKit", "Med Kit", "A basic med kit.", playerMan, 0.0f, 0.0f, 15.0f);
+            addItem("medKit", basicMedKit);
+            Eatable advMedKit = new Eatable("advMedKit", "Advange Med Kit", "A more advange med kit for advange wounds.", playerMan, 0.0f, 0.0f, 25.0f);
+            addItem("advMedKit", advMedKit);
+            Eatable tourniquet = new Eatable("tourniquet", "Tourniquet", "This is a tourniquet, a item to restrict blood flow.", playerMan, 0.0f, 0.0f, 30.0f);
+            addItem("tourniquet", tourniquet);
 
             // Testing the crafting system
             Item paper = new Item("paper", "Paper", "Just some paper... what more do you want?");
