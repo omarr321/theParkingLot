@@ -59,7 +59,8 @@ public static class ItemDB
             addItem("canBeets", canB);
             Eatable canBa = new Eatable("canBanana","Caned Bananas...", "Why?", playerMan, 30.0f, 5.0f, 0.0f);
             addItem("canBanana", canBa);
-
+            Eatable canP = new Eatable("canPeach","Caned Peaches...", "Sweet and tasty", playerMan, 30.0f, 5.0f, 0.0f);
+            addItem("canPeach", canP);
 
 
 
