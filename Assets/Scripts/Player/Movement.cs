@@ -12,6 +12,7 @@ public class Movement : MonoBehaviour
     [SerializeField]
     public Rigidbody rb;
     public float speed = 1.0f;
+    public float speedMod = 10.0f;
     public KeyCode forward = KeyCode.W;
     public KeyCode back = KeyCode.S;
     public KeyCode left = KeyCode.A;
@@ -27,19 +28,19 @@ public class Movement : MonoBehaviour
     void Update()
     {
         if (Input.GetKey(forward)) {
-            rb.AddRelativeForce(Vector3.forward * speed * Time.deltaTime);
+            rb.AddRelativeForce(Vector3.forward * speed * speedMod * Time.deltaTime);
         }
         if (Input.GetKey(back))
         {
-            rb.AddRelativeForce(Vector3.back * speed * Time.deltaTime);
+            rb.AddRelativeForce(Vector3.back * speed * speedMod * Time.deltaTime);
         }
         if (Input.GetKey(left))
         {
-           rb.AddRelativeForce(Vector3.left * speed * Time.deltaTime);
+           rb.AddRelativeForce(Vector3.left * speed * speedMod * Time.deltaTime);
         }
         if (Input.GetKey(right))
         {
-            rb.AddRelativeForce(Vector3.right * speed * Time.deltaTime);
+            rb.AddRelativeForce(Vector3.right * speed * speedMod * Time.deltaTime);
         }
     }
 

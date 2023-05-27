@@ -9848,6 +9848,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 578133179}
   speed: 105000
+  speedMod: 10
   forward: 119
   back: 115
   left: 97
@@ -9873,7 +9874,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 578133172}
   serializedVersion: 2
-  m_Mass: 10
+  m_Mass: 100
   m_Drag: 10
   m_AngularDrag: 10
   m_UseGravity: 1

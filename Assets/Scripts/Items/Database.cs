@@ -37,6 +37,8 @@ public static class Database
     }
 
     public static void initItems( PlayerManager playerMan) {
+
+        //Current Number of Items: 73
         // Liquids
         Eatable water = new Eatable("waterBottle", "Water Bottle", "A plasic water bottle full of water... I think.", playerMan, 5.0f, 25.0f, 0.0f);
         addItem("waterBottle", water);
@@ -136,6 +138,66 @@ public static class Database
         addItem("fabricBasic", fabricB);
         Item fabricH = new Item("fabricHeavy", "Heavy Duty Fabric", "Some nice thick fabric.");
         addItem("fabricHeavy", fabricH);
+
+        //other items
+        Item tire = new Item("tire", "Tire", "A tire that goes onto a car.");
+        addItem("tire", tire);
+        Item jack = new Item("jack", "Car Jack", "A car jack, doesn't seem to work tho.");
+        addItem("jack", jack);
+        Item roadFlare = new Item("roadFlare", "Road Flare", "A road flare that can be lit... maybe.");
+        addItem("roadFlare", roadFlare);
+        Item looseChange = new Item("loseChange", "Lose Change", "Some lose change... not really useful here.");
+        addItem("loseChange", looseChange);
+        Item washers = new Item("washers", "Washers", "Some washers for screws.");
+        addItem("washers", washers);
+        Item rope = new Item("rope", "Rope", "Some sturdy rope. Can be very useful.");
+        addItem("rope", rope);
+        Item screws = new Item("screws", "Screws", "Some loose screws, lets hope no one needed these.");
+        addItem("screws", screws);
+        Item fireExtinguisher = new Item("fireExt", "Fire Extinguisher", "A empty fire extinguisher.");
+        addItem("fireExt", fireExtinguisher);
+        Item belt = new Item("belt", "Belt", "A belt");
+        addItem("belt", belt);
+        Item buttons = new Item("buttons", "Buttons", "Some loose buttons.");
+        addItem("buttons", buttons);
+        Item fuse = new Item("fuse", "Fuse", "A intact fuse.");
+        addItem("fuse", fuse);
+        Item pen = new Item("pen", "Pen", "A pen...");
+        addItem("pen", pen);
+        Item handSanitizer = new Item("handSanitizer", "Hand Sanitizer", "A bottle of hand sanitizer.");
+        addItem("handSanitizer", handSanitizer);
+        Item compass = new Item("compass", "Compass", "A compass that doesn't point north... not sure where it points.");
+        addItem("compass", compass);
+        Item istring = new Item("string", "String", "Some string... what more do you want.");
+        addItem("string", istring);
+        Item lighter = new Item("lighter", "Lighter", "A lighter that lights.");
+        addItem("lighter", lighter);
+        Item paracord = new Item("paracord", "Paracord", "Some paracord rope.");
+        addItem("paracord", paracord);
+        Item plywood = new Item("plywood", "Plywood", "a piece of plywood.");
+        addItem("plywood", plywood);
+        Item powerStrip = new Item("powerStrip", "Power Strip", "A power strip... I don't know what more to say.");
+        addItem("powerStrip", powerStrip);
+        Item drill = new Item("drill", "Drill", "A power drill.");
+        addItem("drill", drill);
+        Item plasticBag = new Item("plasticBag", "Plastic Bag", "A nice 5 gallon trash bag.");
+        addItem("plasticBag", plasticBag);
+        Item metalScrap = new Item("metalScrap", "Metal Scrap", "Some scrap metal that can be used in mutiple ways.");
+        addItem("metalScrap", metalScrap);
+        Item ratchetStrap = new Item("ratchetStrap", "Ratchet Strap", "A ratchet strap that can strap things down.");
+        addItem("ratchetStrap", ratchetStrap);
+        Item phoneCharger = new Item("phoneCharger", "Phone Charger", "A charger that can charge your phone... too bad you don't have your anymore.");
+        addItem("phoneCharger", phoneCharger);
+        Item sunglasses = new Item("sunglasses", "Sunglasses", "A pair of sunglasses.");
+        addItem("sunglasses", sunglasses);
+        Item wrench = new Item("wrench", "Wrench", "A handy wrench.");
+        addItem("wrench", wrench);
+        Item lunchBox = new Item("lunchBox", "Lunch Box", "A lunch box... it is empty.");
+        addItem("lunchBox", lunchBox);
+        Item carMat = new Item("carMat", "Car Mat", "A mat that goes on the floor of the car.");
+        addItem("carMat", carMat);
+        Item bucket = new Item("bucket", "Bucket", "A metal bucket that can be used to carry liquids.");
+        addItem("bucket", bucket);
     }
 
     // Add the item the dictionary
