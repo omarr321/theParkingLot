@@ -60,7 +60,7 @@ public class LootTable
 
     public Item getRandomItem()
     {
-        if (!this.seedSet || this.currEnd < this.items.Length) {
+        if (!this.seedSet || (this.currEnd < this.items.Length)) {
             throw new System.Exception("Error: The LootTable has not been init propertlly!");
         }
 

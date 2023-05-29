@@ -125,14 +125,14 @@ public class CarInvManager : MonoBehaviour
             loot.setSeed(hash.GetHashCode());
 
             int numItem = loot.getRandomItemNum();
-            //Debug.Log(numItem);
+            Debug.Log(numItem);
             for (int i = 0; i < items.Length; i++) {
                 if (i < numItem) {
-                    //Debug.Log("Spawning item...");
+                    Debug.Log("Spawning item...");
                     items[i] = loot.getRandomItem();
                     this.currentEnd++;
                 } else {
-                    //Debug.Log("Spawning null...");
+                    Debug.Log("Spawning null...");
                     items[i] = null;
                 }
             }
